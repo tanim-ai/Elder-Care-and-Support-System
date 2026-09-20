@@ -570,7 +570,12 @@
 document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const isSuccess = params.get('status') === 'success';
-  const msg = isSuccess ? 'Registration Successful! Please sign in.' : params.get('error');
+  const code = params.get('code');
+  const error = params.get('error');
+
+  const msg = isSuccess
+    ? 'Please sign in to continue.' + (code ? ' Your Guardian Code is: ' + code : '')
+    : error;
 
   if (!msg) return;
 
@@ -578,13 +583,10 @@ document.addEventListener('DOMContentLoaded', () => {
   toast.className = `status-toast ${isSuccess ? 'success' : 'error'}`;
   toast.setAttribute('role', isSuccess ? 'status' : 'alert');
 
-  const icon = isSuccess ? '✓' : '!';
-  const title = isSuccess ? 'Success!' : 'Something went wrong';
-
   toast.innerHTML = `
-    <div class="status-icon">${icon}</div>
+    <div class="status-icon">${isSuccess ? '✓' : '!'}</div>
     <div class="status-content">
-      <div class="status-title">${title}</div>
+      <div class="status-title">${isSuccess ? 'Registration Successful!' : 'Something went wrong'}</div>
       <p class="status-message"></p>
     </div>
     <button class="status-close" type="button" aria-label="Close notification">&times;</button>
@@ -601,6 +603,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   toast.querySelector('.status-close').addEventListener('click', closeToast);
   setTimeout(closeToast, 5000);
+
+  if (window.history.replaceState) {
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
 });
 </script>
 <body>
@@ -651,7 +657,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <p class="role-description" id="roleDescription">Family member or care coordinator — sign in with your email and password.</p>
         </div>
         
-        <form class="login-form" id="loginForm" data-form="guardian">
+        <form class="login-form" id="loginForm" data-form="guardian" action="../PHP/login.php" method="POST">
           <div class="form-group">
             <label class="form-label" for="email">Email Address</label>
             <div class="input-wrapper">
