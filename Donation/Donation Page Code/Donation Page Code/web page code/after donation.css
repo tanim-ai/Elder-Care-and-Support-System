@@ -1,0 +1,766 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f2f9fb;
+    color: #004f59;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.page {
+    position: relative;
+
+    width: 100%;
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    padding: clamp(40px, 6vh, 65px) 30px 40px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SUCCESS CONTAINER
+========================================================= */
+
+.success-container {
+    width: 1000px;
+    max-width: 92vw;
+
+    display: grid;
+    grid-template-columns: 360px minmax(0, 520px);
+
+    gap: 50px;
+
+    align-items: center;
+
+    margin: auto;
+}
+
+
+/* =========================================================
+   IMAGE SECTION
+========================================================= */
+
+.image-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.care-image {
+    width: 330px;
+    height: 330px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    display: block;
+
+    box-shadow: 0 10px 30px rgba(0, 79, 89, 0.14);
+}
+
+
+/* =========================================================
+   CONTENT SECTION
+========================================================= */
+
+.content-section {
+    width: 100%;
+    max-width: 520px;
+}
+
+
+/* =========================================================
+   SUCCESS BADGE
+========================================================= */
+
+.success-badge {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 14px;
+
+    background: #e5f6ed;
+    color: #16804b;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+.check {
+    width: 18px;
+    height: 18px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #16804b;
+    color: white;
+
+    border-radius: 50%;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.content-section h1 {
+    color: #005965;
+
+    font-size: 37px;
+    line-height: 1.12;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.description {
+    color: #52676b;
+
+    font-size: 11px;
+    line-height: 1.7;
+
+    max-width: 500px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   DONATION CARD
+========================================================= */
+
+.donation-card {
+    width: 100%;
+
+    background: white;
+
+    padding: 14px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 5px 20px rgba(0, 79, 89, 0.08);
+}
+
+
+/* =========================================================
+   DONATION INFORMATION
+========================================================= */
+
+.info-row {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+
+    align-items: center;
+
+    min-height: 65px;
+}
+
+.info-box {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 0 15px;
+}
+
+.label {
+    color: #75878a;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    margin-bottom: 6px;
+}
+
+.amount {
+    color: #005965;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.receipt {
+    color: #005965;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+}
+
+.vertical-line {
+    width: 1px;
+    height: 45px;
+
+    background: #d8e2e4;
+}
+
+
+/* =========================================================
+   BUTTON ROW
+========================================================= */
+
+.button-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+
+/* =========================================================
+   DOWNLOAD BUTTON
+========================================================= */
+
+.download-btn,
+.back-btn {
+    height: 42px;
+
+    border: none;
+    border-radius: 22px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    transition: 0.2s ease;
+    text-decoration: none;
+}
+
+.download-btn {
+    background: #006b76;
+    color: white;
+}
+
+.download-btn:hover {
+    background: #00545d;
+    transform: translateY(-2px);
+}
+
+.download-btn span {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.download-btn small {
+    font-size: 8px;
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.back-btn {
+    background: #edf2f3;
+    color: #005965;
+}
+
+.back-btn:hover {
+    background: #dfe9eb;
+    transform: translateY(-2px);
+}
+
+.back-btn span {
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   SHARE SECTION
+========================================================= */
+
+.share-section {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 15px;
+
+    color: #667b7f;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.share-btn {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d8e3e5;
+
+    background: white;
+    color: #006b76;
+
+    border-radius: 50%;
+
+    font-size: 13px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.share-btn:hover {
+    background: #006b76;
+    color: white;
+
+    border-color: #006b76;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   DECORATIVE PARTICLES
+========================================================= */
+
+.particle {
+    position: absolute;
+
+    display: block;
+
+    border-radius: 50%;
+
+    background: #b8dce0;
+
+    opacity: 0.45;
+
+    pointer-events: none;
+}
+
+.p1 {
+    width: 8px;
+    height: 8px;
+
+    top: 14%;
+    left: 7%;
+}
+
+.p2 {
+    width: 5px;
+    height: 5px;
+
+    top: 25%;
+    left: 13%;
+}
+
+.p3 {
+    width: 11px;
+    height: 11px;
+
+    top: 18%;
+    right: 8%;
+}
+
+.p4 {
+    width: 6px;
+    height: 6px;
+
+    top: 38%;
+    right: 5%;
+}
+
+.p5 {
+    width: 9px;
+    height: 9px;
+
+    bottom: 20%;
+    left: 8%;
+}
+
+.p6 {
+    width: 5px;
+    height: 5px;
+
+    bottom: 13%;
+    right: 12%;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1200px) {
+
+    .success-container {
+        grid-template-columns: 360px minmax(0, 520px);
+
+        gap: 50px;
+    }
+
+    .care-image {
+        width: 330px;
+        height: 330px;
+    }
+}
+
+
+/* =========================================================
+   MEDIUM DESKTOP
+========================================================= */
+
+@media (min-width: 901px) and (max-width: 1199px) {
+
+    .success-container {
+        max-width: 94vw;
+
+        grid-template-columns: 320px minmax(0, 1fr);
+
+        gap: 40px;
+    }
+
+    .care-image {
+        width: 300px;
+        height: 300px;
+    }
+
+    .content-section h1 {
+        font-size: 34px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .success-container {
+        max-width: 94vw;
+
+        grid-template-columns: 280px minmax(0, 1fr);
+
+        gap: 30px;
+    }
+
+    .care-image {
+        width: 270px;
+        height: 270px;
+    }
+
+    .content-section h1 {
+        font-size: 31px;
+    }
+
+    .description {
+        font-size: 10px;
+    }
+
+    .amount {
+        font-size: 15px;
+    }
+
+    .receipt {
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   SMALL TABLET / MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .page {
+        min-height: calc(100vh - 110px);
+
+        padding: 35px 20px 30px;
+    }
+
+    .success-container {
+        width: 100%;
+        max-width: 500px;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 25px;
+
+        align-items: center;
+
+        margin: 0 auto;
+    }
+
+    .image-section {
+        width: 100%;
+    }
+
+    .care-image {
+        width: 250px;
+        height: 250px;
+    }
+
+    .content-section {
+        width: 100%;
+        max-width: 500px;
+
+        text-align: center;
+    }
+
+    .success-badge {
+        margin-bottom: 12px;
+    }
+
+    .content-section h1 {
+        font-size: 30px;
+
+        line-height: 1.15;
+    }
+
+    .description {
+        max-width: 470px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        font-size: 10px;
+    }
+
+    .donation-card {
+        text-align: left;
+    }
+
+    .share-section {
+        justify-content: center;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    .page {
+        padding: 30px 15px;
+    }
+
+    .success-container {
+        gap: 22px;
+
+        max-width: 100%;
+    }
+
+    .care-image {
+        width: 210px;
+        height: 210px;
+    }
+
+    .success-badge {
+        font-size: 9px;
+
+        padding: 6px 11px;
+    }
+
+    .check {
+        width: 16px;
+        height: 16px;
+
+        font-size: 10px;
+    }
+
+    .content-section h1 {
+        font-size: 26px;
+
+        margin-bottom: 12px;
+    }
+
+    .description {
+        font-size: 9px;
+        line-height: 1.6;
+
+        margin-bottom: 16px;
+    }
+
+    .info-row {
+        min-height: 60px;
+    }
+
+    .info-box {
+        padding: 0 8px;
+    }
+
+    .label {
+        font-size: 8px;
+    }
+
+    .amount {
+        font-size: 13px;
+    }
+
+    .receipt {
+        font-size: 10px;
+    }
+
+    .vertical-line {
+        height: 40px;
+    }
+
+    .button-row {
+        grid-template-columns: 1fr;
+
+        gap: 8px;
+    }
+
+    .download-btn,
+    .back-btn {
+        height: 40px;
+
+        font-size: 9px;
+    }
+
+    .share-section {
+        font-size: 9px;
+    }
+
+    .share-btn {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+
+/* =========================================================
+   SHORT LAPTOP / SHORT SCREEN
+========================================================= */
+
+@media (max-height: 700px) and (min-width: 651px) {
+
+    .page {
+        padding-top: 30px;
+        padding-bottom: 25px;
+    }
+
+    .success-container {
+        gap: 35px;
+    }
+
+    .care-image {
+        width: 280px;
+        height: 280px;
+    }
+
+    .content-section h1 {
+        font-size: 32px;
+    }
+
+    .description {
+        margin-bottom: 14px;
+    }
+
+    .donation-card {
+        padding: 12px;
+    }
+
+    .share-section {
+        margin-top: 10px;
+    }
+}
+
+
+/* =========================================================
+   EXTRA SHORT MOBILE
+========================================================= */
+
+@media (max-height: 600px) and (max-width: 650px) {
+
+    .page {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .success-container {
+        gap: 18px;
+    }
+
+    .care-image {
+        width: 170px;
+        height: 170px;
+    }
+
+    .content-section h1 {
+        font-size: 24px;
+    }
+
+    .description {
+        margin-bottom: 12px;
+    }
+
+    .donation-card {
+        padding: 10px;
+    }
+
+    .info-row {
+        min-height: 52px;
+    }
+
+    .share-section {
+        margin-top: 10px;
+    }
+}

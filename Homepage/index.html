@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generated Page</title>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="global.css">
+<style id="sections-styles">
+.site-header {
+    background-color: var(--primary-light);
+    padding: 16px 0;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+  }
+  .logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .main-nav {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+  }
+  .nav-link {
+    color: var(--text-gray);
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+    padding-bottom: 4px;
+    text-decoration: none;
+  }
+  .nav-link:hover {
+    color: var(--primary);
+  }
+  .nav-link.active {
+    color: var(--primary);
+  }
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary);
+  }
+  .btn-sm {
+    padding: 8px 24px;
+    font-size: 14px;
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .main-nav {
+      display: none;
+    }
+
+    .header-actions {
+      gap: 8px;
+    }
+
+    .header-actions .btn-sm {
+      padding: 8px 16px;
+    }
+  }
+
+#section-hero {
+    padding: 96px 0;
+  }
+  .hero-container {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+  .hero-content {
+    flex: 1;
+    max-width: 690px;
+  }
+  .eyebrow {
+    display: block;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+  .hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+  }
+  .hero-desc {
+    font-size: 18px;
+    margin-bottom: 40px;
+    max-width: 560px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+  }
+  .hero-visual {
+    flex: 1;
+    position: relative;
+    max-width: 486px;
+  }
+  .hero-image-wrapper {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    height: 500px;
+  }
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .stats-card {
+    position: absolute;
+    bottom: -24px;
+    left: -48px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    padding: 32px;
+    width: 320px;
+    box-shadow: 0px 8px 10px -6px rgba(0, 0, 0, 0.1), 0px 20px 25px -5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  .stats-title {
+    color: var(--primary);
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .stats-desc {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  @media (max-width: 992px) {
+    .hero-container {
+      flex-direction: column;
+    }
+    .stats-card {
+      left: 24px;
+      bottom: 24px;
+      width: calc(100% - 48px);
+    }
+    .hero-title {
+      font-size: 36px;
+    }
+  }
+  @media (max-width: 576px) {
+    .hero-actions {
+      flex-direction: column;
+    }
+  }
+
+#section-services {
+    background-color: var(--primary-light);
+    padding: 96px 0;
+  }
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+  }
+  .services-title-area {
+    max-width: 650px;
+  }
+  .section-title {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .section-desc {
+    font-size: 16px;
+  }
+  .view-all-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    font-weight: 600;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    align-items: start;
+  }
+  .service-card {
+    background-color: var(--card-bg);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .offset-card {
+    transform: translateY(32px);
+  }
+  .icon-box {
+    width: 56px;
+    height: 56px;
+    background-color: rgba(0, 109, 119, 0.1);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .card-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .card-desc {
+    font-size: 14px;
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+  .feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+  @media (max-width: 992px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .offset-card {
+      transform: none;
+    }
+  }
+  @media (max-width: 768px) {
+    .services-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+    }
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+#section-donation {
+    padding: 96px 0;
+  }
+  .donation-box {
+    background-color: var(--primary);
+    border-radius: 48px;
+    padding: 96px;
+    box-shadow: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+  .donation-content {
+    max-width: 672px;
+  }
+  .donation-title {
+    color: var(--white);
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+  .donation-desc {
+    color: var(--white);
+    opacity: 0.9;
+    font-size: 16px;
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+  .donation-actions {
+    display: flex;
+    gap: 16px;
+  }
+  @media (max-width: 768px) {
+    .donation-box {
+      padding: 48px 24px;
+      border-radius: 24px;
+    }
+    .donation-actions {
+      flex-direction: column;
+    }
+  }
+
+.site-footer {
+    padding: 64px 0;
+    border-top: 1px solid var(--primary-light);
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 48px;
+  }
+  .footer-brand {
+    max-width: 310px;
+  }
+  .footer-logo {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+  }
+  .footer-desc {
+    font-size: 14px;
+    color: var(--text-dark);
+  }
+  .footer-links-wrapper {
+    display: flex;
+    gap: 96px;
+  }
+  .footer-heading {
+    font-size: 16px;
+    margin-bottom: 24px;
+    color: var(--text-dark);
+  }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer-links a {
+    font-size: 14px;
+    color: var(--text-gray);
+  }
+  .footer-links a:hover {
+    color: var(--primary);
+  }
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 24px;
+    max-width: 448px;
+  }
+  .social-links {
+    display: flex;
+    gap: 16px;
+  }
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #e2e9ec;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+  }
+  .social-icon:hover {
+    background-color: #d0d8db;
+  }
+  .copyright {
+    font-size: 14px;
+    color: var(--text-gray);
+    text-align: right;
+  }
+  @media (max-width: 992px) {
+    .footer-container {
+      flex-direction: column;
+    }
+    .footer-bottom {
+      align-items: flex-start;
+    }
+    .copyright {
+      text-align: left;
+    }
+  }
+  @media (max-width: 576px) {
+    .footer-links-wrapper {
+      flex-direction: column;
+      gap: 48px;
+    }
+  }
+</style>
+</head>
+<body>
+<section id="section-header">
+  <header class="site-header">
+    <div class="header-container" style="max-width: 100%; padding: 0 24px;">
+      <a href="#" class="logo">CareDirect</a>
+      <nav class="main-nav">
+        <a href="#" class="nav-link active">Home</a>
+        <a href="../Donation/Donation Page Code/Donation Page Code/web page code/donation.html" class="nav-link">Donation</a>
+      </nav>
+      <div class="header-actions">
+        <a href="../Login-Registration/login.html" class="btn btn-secondary btn-sm">Log In</a>
+        <a href="../Login-Registration/Registration.html" class="btn btn-primary btn-sm">Sign Up</a>
+      </div>
+    </div>
+  </header>
+</section>
+<section id="section-hero">
+  <div class="container hero-container">
+    <div class="hero-content">
+      <span class="eyebrow">ESTABLISHED 1994</span>
+      <h1 class="hero-title">Dignified living through expert, compassionate care.</h1>
+      <p class="hero-desc">We provide more than just medical support; we create a vibrant community where every resident is treated with the respect and individual attention they deserve.</p>
+      <div class="hero-actions">
+        <a href="#section-services" class="btn btn-primary" style="border-radius: 12px;">Explore Services</a>
+        <a href="#section-donation" class="btn btn-secondary" style="border-radius: 12px;">Support Our Mission</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-image-wrapper">
+        <img src="images/5ba5fdaf13bfc3e8fdb4881e4c3adf6f03b8337c.png" alt="Senior care professional with resident" class="hero-img">
+      </div>
+      <div class="stats-card">
+        <h3 class="stats-title">30+ Years</h3>
+        <p class="stats-desc">Of excellence in senior residential support and specialized nursing care.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="section-services">
+  <div class="container">
+    <div class="services-header">
+      <div class="services-title-area">
+        <h2 class="section-title">Comprehensive Care for Every Stage</h2>
+        <p class="section-desc">From daily assistance to specialized medical intervention, our services are tailored to the unique journey of every individual in our care.</p>
+      </div>
+      <a href="../Login-Registration/login.html" class="view-all-link">
+        View All Programs
+        <img src="images/2052_55.svg" alt="Arrow Right">
+      </a>
+    </div>
+    <div class="services-grid">
+      <!-- Card 1 -->
+      <div class="service-card">
+        <div class="icon-box">
+          <img src="images/2052_60.svg" alt="Personal Care Icon">
+        </div>
+        <h3 class="card-title">Personal Care</h3>
+        <p class="card-desc">Empowering residents with assistance in daily activities while maintaining maximum independence and privacy.</p>
+        <ul class="feature-list">
+          <li><img src="images/2052_68.svg" alt="Check"> Daily Grooming</li>
+          <li><img src="images/2052_72.svg" alt="Check"> Mobility Support</li>
+        </ul>
+      </div>
+      <!-- Card 2 -->
+      <div class="service-card offset-card">
+        <div class="icon-box">
+          <img src="images/2052_77.svg" alt="Medical Support Icon">
+        </div>
+        <h3 class="card-title">Medical Support</h3>
+        <p class="card-desc">24/7 skilled nursing and medication management provided by registered healthcare professionals.</p>
+        <ul class="feature-list">
+          <li><img src="images/2052_85.svg" alt="Check"> Medication Admin</li>
+          <li><img src="images/2052_89.svg" alt="Check"> Vital Monitoring</li>
+        </ul>
+      </div>
+      <!-- Card 3 -->
+      <div class="service-card">
+        <div class="icon-box">
+          <img src="images/2052_94.svg" alt="Social Activities Icon">
+        </div>
+        <h3 class="card-title">Social Activities</h3>
+        <p class="card-desc">A rotating schedule of events, gardening, art classes, and outings to foster lasting friendships and joy.</p>
+        <ul class="feature-list">
+          <li><img src="images/2052_102.svg" alt="Check"> Hobby Groups</li>
+          <li><img src="images/2052_106.svg" alt="Check"> Community Trips</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="section-donation">
+  <div class="container">
+    <div class="donation-box">
+      <div class="donation-content">
+        <h2 class="donation-title">Support a brighter future for our residents.</h2>
+        <p class="donation-desc">CareDirect is a non-profit foundation. Your generous donations help us provide state-of-the-art medical equipment, host special community events, and offer scholarships for those in need.</p>
+        <div class="donation-actions">
+          <a href="../Donation/Donation Page Code/Donation Page Code/web page code/donation.html" class="btn btn-white">Donate Now</a>
+          <a href="#" class="btn btn-outline-white">Other Ways to Help</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="section-footer">
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">CareDirect</a>
+        <p class="footer-desc">Providing dignified and supportive care for the senior community since 1994.</p>
+      </div>
+      
+      <div class="footer-links-wrapper">
+        <div class="footer-nav-col">
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#section-services">Services</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h4 class="footer-heading">Legal</h4>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Accessibility Statement</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="social-links">
+          <a href="#" class="social-icon"><img src="images/2052_183.svg" alt="Social Media"></a>
+          <a href="#" class="social-icon"><img src="images/2052_186.svg" alt="Social Media"></a>
+        </div>
+        <p class="copyright">© 2024 CareDirect Support Platform. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</section>
+</body>
+<script src="global.js" defer></script>
+</html>

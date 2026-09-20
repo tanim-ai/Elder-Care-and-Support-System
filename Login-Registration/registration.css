@@ -1,0 +1,128 @@
+/* CSS for section section:Register — registration-only overrides & additions */
+
+/* Remove the two-column brand layout for registration; let the card breathe
+   and scroll naturally instead of being pinned to 100vh. */
+#section-register.login-page {
+  min-height: auto;
+  padding: 48px 20px;
+  align-items: flex-start;
+  background-color: #f4f8f8;
+}
+
+.container-register {
+  justify-content: center;
+}
+
+.login-section-wide {
+  max-width:100vw;
+  width: 100vw;
+  justify-content: center;
+}
+
+.login-card.login-card-wide {
+  max-width: 100vw;
+}
+
+/* Small in-card brand row replaces the removed left-hand brand section */
+.register-brand-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.register-brand-name {
+  color: #00535b;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.register-brand-tag {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Section divider between account fields and resident care details */
+.section-divider {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(190, 200, 202, 0.5);
+}
+
+.section-divider-label {
+  color: #161d1f;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.form-textarea {
+  min-height: 88px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Service category cards */
+.plan-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  background-color: #eef5f7;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.plan-card:hover {
+  border-color: rgba(0, 83, 91, 0.3);
+}
+
+.plan-card.active {
+  background-color: #ffffff;
+  border-color: #00535b;
+}
+
+.plan-name {
+  color: #161d1f;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.plan-price {
+  color: #00535b;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.plan-price-period {
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.plan-desc {
+  color: #3e494a;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+@media (min-width: 560px) {
+  .plan-options {
+    flex-direction: row;
+  }
+
+  .plan-card {
+    flex: 1;
+  }
+}

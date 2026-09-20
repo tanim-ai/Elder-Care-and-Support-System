@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareDirect - Donation Successful</title>
+
+    <link rel="stylesheet" href="after donation.css">
+
+    <style>
+        /* Navbar - matching donation page */
+        .navbar {
+            width: 100%;
+            background-color: #eef5f7;
+            padding: 16px 20px;
+            box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            border-top: none;
+            height: auto;
+        }
+
+        .logo {
+            color: #00535b;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .nav-link {
+            color: #3e494a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #00535b;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-login,
+        .btn-signup {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 24px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: 2px solid #bec8ca;
+            color: #161d1f;
+        }
+
+        .btn-login:hover {
+            border-color: #00535b;
+        }
+
+        .btn-signup {
+            background: #00535b;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-signup:hover {
+            background: #003d43;
+        }
+
+        /* Hide contact-btn if it exists */
+        .contact-btn {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 18px;
+            }
+            
+            .nav-menu a {
+                font-size: 11px;
+            }
+            
+            .btn-login,
+            .btn-signup {
+                padding: 8px 16px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 15px 20px;
+                gap: 12px;
+            }
+
+            .logo {
+                width: 100%;
+                font-size: 23px;
+            }
+
+            .nav-menu {
+                width: 100%;
+                flex: unset;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .nav-menu a {
+                font-size: 9px;
+            }
+
+            .nav-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .btn-login,
+            .btn-signup {
+                padding: 8px 14px;
+                font-size: 9px;
+                flex: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar">
+        <a href="../../../../Homepage/index.html" class="logo">CareDirect</a>
+        <nav class="nav-menu">
+            <a href="../../../../Homepage/index.html" class="nav-link">Home</a>
+            <a href="donation.html" class="nav-link">Donation</a>
+        </nav>
+        <div class="nav-actions">
+            <a href="../../../../Login-Registration/login.html" class="btn-login">Log In</a>
+            <a href="../../../../Login-Registration/Registration.html" class="btn-signup">Sign Up</a>
+        </div>
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="page">
+
+        <!-- Decorative particles -->
+        <span class="particle p1"></span>
+        <span class="particle p2"></span>
+        <span class="particle p3"></span>
+        <span class="particle p4"></span>
+        <span class="particle p5"></span>
+        <span class="particle p6"></span>
+
+
+        <section class="success-container">
+
+            <!-- LEFT IMAGE -->
+            <div class="image-section">
+
+                <img
+                    src="care-image.jpg"
+                    alt="CareDirect support"
+                    class="care-image"
+                >
+
+            </div>
+
+
+            <!-- RIGHT CONTENT -->
+            <div class="content-section">
+
+                <!-- Success badge -->
+                <div class="success-badge">
+                    <span class="check">✓</span>
+                    Transaction Successful
+                </div>
+
+
+                <!-- Heading -->
+                <h1>
+                    Your Kindness<br>
+                    Transforms Lives
+                </h1>
+
+
+                <!-- Description -->
+                <p class="description">
+                    Thank you for your generous contribution. Your support
+                    directly provides essential care, medication, and
+                    specialized meal plans for our residents. We are deeply
+                    grateful for your partnership in our mission.
+                </p>
+
+
+                <!-- Donation information -->
+                <div class="donation-card">
+
+                    <div class="info-row">
+
+                        <div class="info-box">
+                            <span class="label">
+                                Donation Amount
+                            </span>
+
+                            <strong class="amount">
+                                $250.00 USD
+                            </strong>
+                        </div>
+
+
+                        <div class="vertical-line"></div>
+
+
+                        <div class="info-box">
+                            <span class="label">
+                                Receipt Number
+                            </span>
+
+                            <strong class="receipt">
+                                CD-9926-X82L
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Buttons -->
+                    <div class="button-row">
+
+                        <button
+                            class="download-btn"
+                            id="downloadReceipt"
+                        >
+                            <span>⇩</span>
+                            Download Tax Receipt
+                            <small>(PDF)</small>
+                        </button>
+
+
+                        <a
+                            href="../../../../Homepage/index.html"
+                            class="back-btn"
+                            id="backHome"
+                        >
+                            <span>←</span>
+                            Back to Home
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Share -->
+                <div class="share-section">
+
+                    <span>Share your impact:</span>
+
+                    <button
+                        class="share-btn"
+                        id="shareBtn"
+                        aria-label="Share"
+                    >
+                        ↗
+                    </button>
+
+                    <button
+                        class="share-btn"
+                        id="copyBtn"
+                        aria-label="Copy"
+                    >
+                        ▣
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

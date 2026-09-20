@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CareDirect – Create Account</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #dbe9ea 0%, #eef5f7 45%, #e4eef0 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+    }
+
+    .card {
+      max-width: 780px;
+      width: 100%;
+      min-width: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(4px);
+      border-radius: 24px;
+      padding: 36px 40px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.02);
+      border: 1px solid rgba(255,255,255,0.5);
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 0 1 auto;
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .brand-name {
+      font-weight: 700;
+      font-size: 22px;
+      color: #00535b;
+      letter-spacing: -0.3px;
+      white-space: nowrap;
+    }
+    .brand-tag {
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .head {
+      flex-shrink: 0;
+    }
+    .head h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #161d1f;
+      margin-bottom: 6px;
+      word-break: break-word;
+    }
+    .head p {
+      color: #3e494a;
+      font-size: 16px;
+      word-break: break-word;
+    }
+
+    .role-toggle {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .role-tab {
+      background: #eef5f7;
+      border: 1px solid transparent;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #3e494a;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+      flex: 0 1 auto;
+    }
+    .role-tab.active {
+      background: #006d77;
+      color: #e0f2f5;
+    }
+    .role-tab:hover:not(.active) { background: #dce9eb; }
+    .role-desc {
+      font-size: 14px;
+      color: #3e494a;
+      padding-left: 4px;
+      word-break: break-word;
+      flex-shrink: 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+    .field-row {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .field-row .field {
+      flex: 1 1 200px;
+      min-width: 120px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      color: #161d1f;
+      letter-spacing: -0.2px;
+      flex-shrink: 0;
+    }
+    .hint {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 2px;
+      word-break: break-word;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 16px;
+      background: #eef5f7;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: 0.2s;
+      color: #161d1f;
+      flex: 1 1 auto;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #00535b;
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(0,83,91,0.1);
+    }
+    textarea { min-height: 80px; resize: vertical; }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%233e494a' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 18px;
+      padding-right: 44px;
+    }
+
+    .input-icon {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-width: 0;
+    }
+    .input-icon svg {
+      position: absolute;
+      left: 14px;
+      width: 20px;
+      height: 20px;
+      color: #6b7280;
+      pointer-events: none;
+      flex-shrink: 0;
+    }
+    .input-icon input {
+      padding-left: 44px;
+      padding-right: 48px;
+      width: 100%;
+      min-width: 0;
+    }
+    .pw-toggle {
+      position: absolute;
+      right: 14px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #6b7280;
+      display: flex;
+      flex-shrink: 0;
+    }
+    .pw-toggle svg { width: 20px; height: 20px; }
+
+    #pwMismatch { color: #b91c1c; font-size: 14px; margin-top: 4px; word-break: break-word; }
+
+    .divider {
+      border-top: 1px solid rgba(190,200,202,0.4);
+      padding-top: 16px;
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    .divider-label {
+      font-weight: 700;
+      font-size: 17px;
+      color: #161d1f;
+      display: block;
+      margin-bottom: 4px;
+      word-break: break-word;
+    }
+
+    .service-details {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 16px 18px;
+      border: 1px solid rgba(0,83,91,0.12);
+      transition: all 0.25s ease;
+      margin-top: 2px;
+    }
+    .service-details .service-name {
+      font-weight: 700;
+      font-size: 18px;
+      color: #00535b;
+    }
+    .service-details .service-price {
+      font-weight: 700;
+      font-size: 20px;
+      color: #00535b;
+      margin-top: 2px;
+    }
+    .service-details .service-desc {
+      font-size: 14px;
+      color: #3e494a;
+      margin-top: 4px;
+    }
+    .service-details .service-period {
+      font-weight: 400;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .section-card {
+      background: #f6fafb;
+      border-radius: 16px;
+      padding: 20px 20px 16px;
+      border: 1px solid rgba(0,83,91,0.08);
+      transition: border 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .section-card .divider:first-of-type {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+    .section-card .divider {
+      border-top-color: rgba(0,83,91,0.1);
+    }
+    .section-card + .section-card {
+      margin-top: 6px;
+    }
+
+    .section-card .field {
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+    .section-card .field:last-of-type {
+      margin-bottom: 0;
+    }
+    .section-card .field-row {
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+    .section-card .field-row:last-of-type {
+      margin-bottom: 0;
+    }
+    .section-card .divider + .field,
+    .section-card .divider + .field-row {
+      margin-top: 4px;
+    }
+    .section-card .field-row .field {
+      margin-bottom: 0;
+    }
+
+    .role-form { display: none; }
+    .role-form.active { display: block; }
+    .role-form > .section-card + .section-card { margin-top: 6px; }
+    .role-form > .section-card + .section-card,
+    .role-form > .section-card + .section-card + .section-card { margin-top: 6px; }
+
+    .btn-primary {
+      background: #00535b;
+      color: white;
+      border: none;
+      padding: 16px;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 6px;
+      flex-shrink: 0;
+      width: 100%;
+      min-width: 0;
+    }
+    .btn-primary:hover { background: #003d43; }
+    .btn-primary svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .footer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(190,200,202,0.3);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+    .footer span { color: #3e494a; font-size: 15px; text-align: center; }
+    .btn-secondary {
+      color: #00535b;
+      text-decoration: none;
+    }
+
+    .back-home-wrapper {
+      display: flex;
+      justify-content: center;
+      padding-top: 12px;
+      flex-shrink: 0;
+    }
+
+    .btn-home {
+      background-color: transparent;
+      color: #3e494a;
+      border: 1px solid rgba(62, 73, 74, 0.2);
+      border-radius: 9999px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-home:hover {
+      background-color: rgba(0, 83, 91, 0.05);
+      border-color: rgba(0, 83, 91, 0.3);
+      color: #00535b;
+    }
+
+    .btn-home svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .hidden { display: none !important; }
+    .mt-1 { margin-top: 6px; }
+
+    @media (max-width: 600px) {
+      .card { padding: 24px 18px; }
+      .field-row { flex-direction: column; gap: 12px; }
+      .section-card .field-row .field { margin-bottom: 0; }
+      .brand-tag { white-space: normal; }
+      .role-tab { white-space: normal; }
+      .btn-secondary { white-space: normal; }
+    }
+    @media (max-width: 400px) {
+      .card { padding: 16px 12px; }
+      .brand-name { font-size: 18px; }
+      .head h1 { font-size: 22px; }
+    }
+
+    .status-toast {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 9999;
+      width: min(390px, calc(100vw - 32px));
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 16px 16px 16px 17px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 14px 38px rgba(0,35,40,0.16);
+      border: 1px solid rgba(0,83,91,0.12);
+      animation: toastIn .4s cubic-bezier(.2,.8,.2,1);
+      overflow: hidden;
+      font-family: inherit;
+    }
+
+    .status-toast.success { border-color: rgba(0,109,119,0.18); }
+    .status-toast.error { border-color: rgba(179,38,30,0.18); }
+
+    .status-toast::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+    }
+
+    .status-toast.success::before { background: #006d77; }
+    .status-toast.error::before { background: #b3261e; }
+
+    .status-icon {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .status-toast.success .status-icon {
+      background: #e6f6f4;
+      color: #006d77;
+    }
+
+    .status-toast.error .status-icon {
+      background: #fdecea;
+      color: #b3261e;
+    }
+
+    .status-content {
+      flex: 1;
+      min-width: 0;
+      padding-top: 1px;
+    }
+
+    .status-title {
+      margin: 0 0 3px;
+      color: #161d1f;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .status-message {
+      margin: 0;
+      color: #596566;
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 500;
+      overflow-wrap: anywhere;
+    }
+
+    .status-close {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: #7b8586;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+
+    .status-close:hover {
+      background: #eef5f7;
+      color: #161d1f;
+    }
+
+    .status-progress {
+      position: absolute;
+      left: 4px;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      transform-origin: left;
+      animation: toastProgress 5s linear forwards;
+    }
+
+    .status-toast.success .status-progress { background: #006d77; }
+    .status-toast.error .status-progress { background: #b3261e; }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateX(35px) scale(.96); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
+    }
+
+    @keyframes toastOut {
+      from { opacity: 1; transform: translateX(0) scale(1); }
+      to { opacity: 0; transform: translateX(35px) scale(.96); }
+    }
+
+    @keyframes toastProgress {
+      from { transform: scaleX(1); }
+      to { transform: scaleX(0); }
+    }
+
+    @media (max-width: 600px) {
+      .status-toast {
+        top: 14px;
+        left: 16px;
+        right: 16px;
+        width: auto;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+<div class="card">
+  <div class="brand-row">
+    <span class="brand-name">CareDirect</span>
+  </div>
+
+  <div class="head">
+    <h1>Create Account</h1>
+    <p>Register to get started with your care portal.</p>
+  </div>
+
+  <div class="role-toggle" role="radiogroup" aria-label="Select your role">
+    <button type="button" class="role-tab active" data-role="guardian" data-desc="You're registering as a guardian. Enter your account details, Guardian ID, phone number and relationship to the resident." role="radio" aria-checked="true">Guardian</button>
+    <button type="button" class="role-tab" data-role="resident" data-desc="You're registering as a resident. Enter your personal details and care information." role="radio" aria-checked="false">Resident</button>
+  </div>
+  <p class="role-desc" id="roleDesc">You're registering as a guardian. Enter your account details, Guardian ID and relationship to the resident.</p>
+
+  <form id="registerForm" action="../PHP/register_resident.php" method="POST">
+
+    <div class="field">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Jane Doe" required>
+    </div>
+
+    <div class="field">
+      <label for="email">Email Address</label>
+      <div class="input-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Z"/><path d="m3.5 6 8.5 6.5L20.5 6"/></svg>
+        <input type="email" id="email" name="email" placeholder="name@example.com" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="password">Password</label>
+      <div class="input-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4.5" y="10.5" width="15" height="9.5" rx="1.8"/><path d="M7.5 10.5V7.5a4.5 4.5 0 0 1 9 0v3"/></svg>
+        <input type="password" id="password" name="password" placeholder="••••••••" required minlength="8">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="confirmPassword">Confirm Password</label>
+      <div class="input-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4.5" y="10.5" width="15" height="9.5" rx="1.8"/><path d="M7.5 10.5V7.5a4.5 4.5 0 0 1 9 0v3"/></svg>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required minlength="8">
+      </div>
+      <p class="hint" id="pwMismatch" hidden>Passwords do not match.</p>
+    </div>
+
+    <div class="role-form" data-role-form="guardian">
+      <fieldset class="section-card">
+        <div class="divider" style="border-top: none; padding-top: 0;">
+          <span class="divider-label">Guardian-Resident Details</span>
+          <p class="hint">Enter your guardian account and contact information.</p>
+        </div>
+
+        <div class="field">
+          <label for="guardianPhone">Guardian's Phone Number</label>
+          <input type="tel" id="guardianPhone" name="guardianPhone" placeholder="+880 1XXXXXXXXX" pattern="^\+?[0-9\s\-\(\)]{7,20}" required>
+        </div>
+
+        <div class="field">
+          <label for="residentId">Resident ID</label>
+          <input type="text" id="residentId" name="residentId" placeholder="e.g. 0001" required>
+           <p class="hint" id="residentLookup"></p>
+        </div>
+
+        <div class="field">
+          <label for="guardianRelation">Relation Type</label>
+          <select id="guardianRelation" name="guardianRelation" required>
+            <option value="" disabled selected>Select relation</option>
+            <option value="parent">Parent</option>
+            <option value="spouse">Spouse</option>
+            <option value="child">Child</option>
+            <option value="sibling">Sibling</option>
+            <option value="relative">Other Relative</option>
+            <option value="friend">Friend</option>
+            <option value="legal-guardian">Legal Guardian</option>
+          </select>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="role-form" data-role-form="resident">
+      <fieldset class="section-card">
+        <div class="divider" style="border-top: none; padding-top: 0;">
+          <span class="divider-label">Resident Details</span>
+          <p class="hint">Tell us about yourself so our care team can prepare ahead of move-in.</p>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="residentAge">Age</label>
+            <input type="number" id="residentAge" name="residentAge" placeholder="e.g. 78" min="0" max="120" required>
+          </div>
+          <div class="field">
+            <label for="residentGender">Gender</label>
+            <select id="residentGender" name="residentGender" required>
+              <option value="" disabled selected>Select</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="residentHealth">Resident's Known Health Conditions</label>
+          <textarea id="residentHealth" name="residentHealth"
+                    placeholder="e.g. diabetes, limited mobility, medication allergies — leave blank if none"></textarea>
+          <p class="hint">Shared only with the care team. A nurse will follow up before move-in.</p>
+        </div>
+
+        <div class="divider" style="border-top: none; padding-top: 4px;">
+          <span class="divider-label" style="font-size: 15px;">Emergency Contact</span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="residentEmergencyName">Emergency Contact Name</label>
+            <input type="text" id="residentEmergencyName" name="residentEmergencyName" placeholder="Jane Doe" required>
+          </div>
+          <div class="field">
+            <label for="residentEmergencyContact">Emergency Contact Number</label>
+            <input type="tel" id="residentEmergencyContact" name="residentEmergencyContact"
+                   placeholder="+880 1XXXXXXXXX" pattern="^\+?[0-9\s\-\(\)]{7,20}" required>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="section-card">
+        <div class="divider" style="border-top: none; padding-top: 0;">
+          <span class="divider-label">Service Category</span>
+          <p class="hint">Choose the level of care and accommodation.</p>
+        </div>
+
+        <div class="field">
+          <label for="serviceCategorySelect">Select Service</label>
+          <select id="serviceCategorySelect" name="serviceCategorySelect" required>
+            <option value="standard" selected>Standard — $1,200/mo</option>
+            <option value="premium">Premium — $2,200/mo</option>
+          </select>
+          <input type="hidden" id="serviceCategory" name="serviceCategory" value="standard">
+        </div>
+
+        <div id="serviceDetailsContainer" class="service-details">
+          <div class="service-name" id="serviceDetailName">Standard</div>
+          <div class="service-price" id="serviceDetailPrice">$1,200<span class="service-period">/mo</span></div>
+          <div class="service-desc" id="serviceDetailDesc">Daily living support, shared common areas, weekly wellness checks.</div>
+        </div>
+      </fieldset>
+
+      <div class="section-card">
+        <div class="divider" style="border-top: none; padding-top: 0;">
+          <span class="divider-label">Add Care Item</span>
+          <p class="hint">Fill in the details for the new care entry.</p>
+        </div>
+
+        <div class="field">
+          <label for="careType">Care Type</label>
+          <select id="careType" name="careType">
+            <option value="" disabled selected>Select type</option>
+            <option value="medication">Medication</option>
+            <option value="therapy">Therapy</option>
+            <option value="routine-check">Routine Check</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="careName">Name</label>
+          <input type="text" id="careName" name="careName" placeholder="e.g. Metformin 500mg">
+        </div>
+
+        <div class="field">
+          <label for="carePurpose">Purpose</label>
+          <input type="text" id="carePurpose" name="carePurpose" placeholder="e.g. Diabetes Management">
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="careTime">Time</label>
+            <input type="time" id="careTime" name="careTime">
+          </div>
+
+          <div class="field">
+            <label for="careFrequency">Frequency</label>
+            <select id="careFrequency" name="careFrequency">
+              <option value="" disabled selected>Select</option>
+              <option value="daily">Daily</option>
+              <option value="twice-daily">Twice daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="as-needed">As needed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="careNotes">Notes (optional)</label>
+          <textarea id="careNotes" name="careNotes" placeholder="Any additional instructions..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-primary">
+      Create Account
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </form>
+
+  <div class="footer">
+    <span>Already have an account?</span>
+    <a href="login.html" class="btn-secondary">Log In</a>
+  </div>
+
+  <div class="back-home-wrapper">
+    <a href="../Homepage/index.html" class="btn-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+      </svg>
+      Back to Home
+    </a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const params = new URLSearchParams(window.location.search);
+    const isSuccess = params.get('status') === 'success';
+    const msg = isSuccess ? 'Registration Successful!' : params.get('error');
+
+    if (msg) {
+      const toast = document.createElement('div');
+      toast.className = `status-toast ${isSuccess ? 'success' : 'error'}`;
+      toast.setAttribute('role', isSuccess ? 'status' : 'alert');
+
+      toast.innerHTML = `
+        <div class="status-icon">${isSuccess ? '✓' : '!'}</div>
+        <div class="status-content">
+          <div class="status-title">${isSuccess ? 'Success!' : 'Please check your details'}</div>
+          <p class="status-message"></p>
+        </div>
+        <button class="status-close" type="button" aria-label="Close notification">&times;</button>
+        <div class="status-progress"></div>
+      `;
+
+      toast.querySelector('.status-message').textContent = msg;
+      document.body.appendChild(toast);
+
+      const closeToast = () => {
+        toast.style.animation = 'toastOut .3s ease forwards';
+        setTimeout(() => toast.remove(), 300);
+      };
+
+      toast.querySelector('.status-close').addEventListener('click', closeToast);
+      setTimeout(closeToast, 5000);
+
+      if (window.history.replaceState) {
+        const cleanUrl = window.location.pathname + window.location.hash;
+        window.history.replaceState({}, document.title, cleanUrl);
+      }
+    }
+  });
+
+  (function() {
+    const roleTabs = document.querySelectorAll('.role-tab');
+    const roleDesc = document.getElementById('roleDesc');
+    const roleForms = document.querySelectorAll('.role-form');
+    const form = document.getElementById('registerForm');
+    const pwMismatch = document.getElementById('pwMismatch');
+
+    let currentRole = 'guardian';
+
+    const serviceData = {
+      standard: {
+        name: 'Standard',
+        price: '$1,200',
+        period: '/mo',
+        desc: 'Daily living support, shared common areas, weekly wellness checks.'
+      },
+      premium: {
+        name: 'Premium',
+        price: '$2,200',
+        period: '/mo',
+        desc: 'Private suite option, daily nursing visits, dedicated care coordinator.'
+      }
+    };
+
+    function updateServiceDetails(value) {
+      const data = serviceData[value];
+      if (!data) return;
+      document.getElementById('serviceDetailName').textContent = data.name;
+      document.getElementById('serviceDetailPrice').innerHTML = data.price + '<span class="service-period">' + data.period + '</span>';
+      document.getElementById('serviceDetailDesc').textContent = data.desc;
+      document.getElementById('serviceCategory').value = value;
+    }
+
+    function setRole(role) {
+      currentRole = role;
+      form.action = role === 'resident' ? '../PHP/register_resident.php' : '../PHP/register_guardian.php';
+
+      roleTabs.forEach(tab => {
+        const active = tab.dataset.role === role;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-checked', active ? 'true' : 'false');
+        if (active) roleDesc.textContent = tab.dataset.desc;
+      });
+
+      roleForms.forEach(roleForm => {
+        const match = roleForm.dataset.roleForm === role;
+        roleForm.classList.toggle('active', match);
+        roleForm.querySelectorAll('input, select, textarea, button').forEach(el => {
+          el.disabled = !match;
+        });
+      });
+    }
+
+    roleTabs.forEach(tab => {
+      tab.addEventListener('click', () => setRole(tab.dataset.role));
+    });
+
+    const serviceSelect = document.getElementById('serviceCategorySelect');
+    if (serviceSelect) {
+      serviceSelect.addEventListener('change', function() {
+        updateServiceDetails(this.value);
+      });
+    }
+
+    document.querySelectorAll('.pw-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.getElementById(btn.dataset.target);
+        if (!target) return;
+        target.type = target.type === 'password' ? 'text' : 'password';
+      });
+    });
+
+    const residentIdInput = document.getElementById('residentId');
+    const residentLookup = document.getElementById('residentLookup');
+
+    if (residentIdInput) {
+        residentIdInput.addEventListener('input', function () {
+            const val = this.value.trim();
+            if (!val) {
+                residentLookup.textContent = '';
+                return;
+            }
+
+            fetch(`../PHP/get_resident.php?residentId=${encodeURIComponent(val)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        residentLookup.style.color = '#006d77';
+                        residentLookup.textContent = '✓ Resident found: ' + data.name;
+                    } else {
+                        residentLookup.style.color = '#b91c1c';
+                        residentLookup.textContent = '✗ Resident not found.';
+                    }
+                })
+                .catch(() => {
+                    residentLookup.textContent = '';
+                });
+        });
+    }
+
+    form.addEventListener('submit', handleSubmit); 
+    setRole('guardian');
+    updateServiceDetails('standard');
+  })();
+
+  function handleSubmit(e) {
+    const form = document.getElementById('registerForm');
+    const pwMismatch = document.getElementById('pwMismatch');
+    
+    if (!form.checkValidity()) {
+        e.preventDefault();
+        form.reportValidity();
+        return;
+    }
+
+    const pw = document.getElementById('password').value;
+    const cpw = document.getElementById('confirmPassword').value;
+
+    if (pw !== cpw) {
+      e.preventDefault();
+      pwMismatch.hidden = false;
+      document.getElementById('confirmPassword').focus();
+      return;
+    }
+
+    pwMismatch.hidden = true;
+  }
+</script>
+</body>
+</html>

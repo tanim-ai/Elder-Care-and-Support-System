@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareDirect — Resident Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div class="shell">
+      <!-- ============ SIDEBAR ============ -->
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="brand"><span>CareDirect</span></div>
+          <div class="resident-card">
+            <div class="avatar">AM</div>
+            <h2>Resident Portal</h2>
+            <div class="care-level">Care Level: Premium</div>
+          </div>
+          <nav class="primary-nav">
+            <a href="#dashboard" class="nav-link" data-page="dashboard"><span
+                class="dot"></span>Dashboard</a>
+            <a href="#health-profile" class="nav-link"
+              data-page="health-profile"><span class="dot"></span>Health
+              Profile</a>
+            <a href="#daily-schedule" class="nav-link"
+              data-page="daily-schedule"><span class="dot"></span>Daily
+              Schedule</a>
+            <a href="#medication" class="nav-link" data-page="medication"><span
+                class="dot"></span>Medication</a>
+            <a href="#meal-options" class="nav-link"
+              data-page="meal-options"><span class="dot"></span>Meal Options</a>
+            <a href="#billing" class="nav-link" data-page="billing"><span
+                class="dot"></span>Billing</a>
+          </nav>
+        </div>
+        <div class="sidebar-bottom">
+          <button class="emergency-btn" onclick="openEmergency()"><span
+              class="glyph">⚠</span>Emergency</button>
+          <div class="sidebar-footer">
+            <a href="../../Login-Registration/login.html" class="footer-link">↩ Log Out</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ============ MAIN ============ -->
+      <main>
+
+        <!-- ================= DASHBOARD ================= -->
+        <section class="page active" id="dashboard">
+          <div class="page-header">
+            <div class="eyebrow">Good morning</div>
+            <h1>Arthur Miller</h1>
+            <p>Here's how today is shaping up — vitals, medications, and meals
+              at a glance.</p>
+          </div>
+
+          <div class="grid-2">
+            <div class="stack">
+              <div class="card">
+                <div class="card-head">
+                  <h3>Daily Health Summary</h3>
+                  <button class="btn btn-mint" onclick="openHealthReport()">View
+                    Report</button>
+                </div>
+                <div class="vitals-grid">
+                  <div class="vital-box">
+                    <div class="glyph">❤</div>
+                    <div class="label">Heart Rate</div>
+                    <div class="value">72 <small>bpm</small></div>
+                    <span class="pill green">Normal</span>
+                  </div>
+                  <div class="vital-box">
+                    <div class="glyph">🩸</div>
+                    <div class="label">Blood O₂</div>
+                    <div class="value">98<small>%</small></div>
+                    <span class="pill green">Normal</span>
+                  </div>
+                  <div class="vital-box">
+                    <div class="glyph">🌡</div>
+                    <div class="label">Temp</div>
+                    <div class="value">98.4<small>°F</small></div>
+                    <span class="pill blue">Stable</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-head">
+                  <h3>Meal Plan</h3>
+                  <span style="font-size:22px;">🍽</span>
+                </div>
+                <div class="stack" style="gap:16px;">
+                  <div class="meal-row">
+                    <div class="meal-thumb">🥣</div>
+                    <div class="meal-info"><h4>Breakfast</h4><p>Served · 7:30
+                        AM</p></div>
+                    <span class="check">✔</span>
+                  </div>
+                  <div class="meal-row next">
+                    <div class="meal-thumb">🥗</div>
+                    <div class="meal-info"><h4>Lunch — Up Next</h4><p>Poached
+                        salmon, steamed greens</p></div>
+                  </div>
+                  <div class="meal-row">
+                    <div class="meal-thumb">🍲</div>
+                    <div class="meal-info"><h4>Dinner</h4><p>Herb chicken & mash
+                        · 6:00 PM</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head"><h3>Medication Schedule</h3></div>
+              <ul class="med-timeline">
+                <li>
+                  <div class="node"></div>
+                  <div class="timeline-item done">
+                    <div class="tag">Taken · 8:00 AM</div>
+                    <h4>Lisinopril (10mg)</h4>
+                    <p>Blood Pressure</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="node"></div>
+                  <div class="timeline-item current">
+                    <div class="tag">Due Now</div>
+                    <h4>Metformin (500mg)</h4>
+                    <p>Take with lunch</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="node"></div>
+                  <div class="timeline-item">
+                    <div class="tag future">6:00 PM</div>
+                    <h4>Atorvastatin</h4>
+                    <p>Cholesterol</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= HEALTH PROFILE ================= -->
+        <section class="page" id="health-profile">
+          <div class="page-header">
+            <div class="eyebrow">Resident record</div>
+            <h1>Resident Health Profile</h1>
+            <p>Comprehensive medical overview and personal care requirements for
+              Arthur Miller.</p>
+          </div>
+
+          <div class="hp-top">
+            <div class="card">
+              <div class="card-head">
+                <h3>❤ Vitals</h3>
+                <span class="pill">Updated today</span>
+              </div>
+              <div class="hp-vitals-row">
+                <div class="hp-vital">
+                  <div class="lbl">Heart Rate</div>
+                  <div class="num">72<span>bpm</span></div>
+                  <div class="trend ok">Within range</div>
+                </div>
+                <div class="hp-vital">
+                  <div class="lbl">Blood Pressure</div>
+                  <div class="num">142<span>/90</span></div>
+                  <div class="trend bad">Above target</div>
+                </div>
+                <div class="hp-vital">
+                  <div class="lbl">Blood Sugar</div>
+                  <div class="num">118<span>mg/dL</span></div>
+                  <div class="trend ok">Within range</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-head"><h3>⚕ Conditions</h3></div>
+              <div class="cond-item">
+                <div class="cond-icon">🫀</div>
+                <div><h4>Hypertension</h4><p>Managed with daily
+                    medication</p></div>
+              </div>
+              <div class="cond-item">
+                <div class="cond-icon">🩸</div>
+                <div><h4>Type 2 Diabetes</h4><p>Diet and medication
+                    controlled</p></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-head"><h3>🍽 Dietary Restrictions</h3></div>
+              <div id="dietList">
+                <div class="diet-alert">
+                  <h4>⚠ Sodium Restricted</h4>
+                  <p>Avoid high-sodium processed foods. Target &lt; 1500mg
+                    daily.</p>
+                </div>
+                <div class="diet-good">
+                  <h4>💧 Hydration Focus</h4>
+                  <p>Minimum 2 liters water daily. Monitor fluid intake
+                    logs.</p>
+                </div>
+              </div>
+              <button class="btn btn-primary"
+                style="width:100%;justify-content:center;border-radius:12px;padding:16px;"
+                onclick="openEditRestrictions()">✎ Edit Restrictions</button>
+            </div>
+
+            <div class="upcoming-med">
+              <div class="card-head" style="margin-bottom:8px;">
+                <h3 style="font-size:20px;">💊 Next Dose</h3>
+                <span
+                  style="font-weight:700;color:var(--teal-900);font-size:24px;">1:00
+                  PM</span>
+              </div>
+              <div class="upcoming-med-head">
+                <div class="box">💊</div>
+                <div>
+                  <h4>Lisinopril (10mg)</h4>
+                  <p>1 Tablet, Oral</p>
+                  <em>Take with water</em>
+                </div>
+              </div>
+              <button class="btn btn-dark-block" id="markGivenBtn"
+                onclick="markDoseGiven(this)">✔ Mark as Given</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= DAILY SCHEDULE ================= -->
+        <section class="page" id="daily-schedule">
+          <div class="page-header">
+            <div class="eyebrow">Today</div>
+            <h1>Daily Schedule</h1>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <h3>Today's Timeline</h3>
+              <span class="pill">Live</span>
+            </div>
+            <ul class="day-timeline"
+              style="list-style:none;margin:0;padding:0;">
+              <li class="day-event" id="day-event-1" data-status="pending">
+                <div class="day-time">💊</div>
+                <div class="day-body">
+                  <div class="day-event-title">
+                    <span class="tag future">8:00 AM</span>
+                    <h4>Morning Medications</h4>
+                    <p>Lisinopril, Metformin</p>
+                  </div>
+                  <div class="day-actions">
+                    <button class="day-btn done-btn"
+                      onclick="setDayStatus('day-event-1','done')">✔
+                      Done</button>
+                    <button class="day-btn notdone-btn"
+                      onclick="setDayStatus('day-event-1','notdone')">✕ Not
+                      Done</button>
+                  </div>
+                </div>
+              </li>
+              <li class="day-event" id="day-event-2" data-status="pending">
+                <div class="day-time">🍽</div>
+                <div class="day-body">
+                  <div class="day-event-title">
+                    <span class="tag future">12:00 PM</span>
+                    <h4>Lunch Service</h4>
+                    <p>Poached salmon with steamed greens</p>
+                  </div>
+                  <div class="day-actions">
+                    <button class="day-btn done-btn"
+                      onclick="setDayStatus('day-event-2','done')">✔
+                      Done</button>
+                    <button class="day-btn notdone-btn"
+                      onclick="setDayStatus('day-event-2','notdone')">✕ Not
+                      Done</button>
+                  </div>
+                </div>
+              </li>
+              <li class="day-event" id="day-event-3" data-status="pending">
+                <div class="day-time">🩺</div>
+                <div class="day-body">
+                  <div class="day-event-title">
+                    <span class="tag future">3:00 PM</span>
+                    <h4>Afternoon Vital Check</h4>
+                    <p>Blood pressure and glucose reading</p>
+                  </div>
+                  <div class="day-actions">
+                    <button class="day-btn done-btn"
+                      onclick="setDayStatus('day-event-3','done')">✔
+                      Done</button>
+                    <button class="day-btn notdone-btn"
+                      onclick="setDayStatus('day-event-3','notdone')">✕ Not
+                      Done</button>
+                  </div>
+                </div>
+              </li>
+              <li class="day-event" id="day-event-4" data-status="pending">
+                <div class="day-time">🍲</div>
+                <div class="day-body">
+                  <div class="day-event-title">
+                    <span class="tag future">6:00 PM</span>
+                    <h4>Dinner Service</h4>
+                    <p>Herb chicken with mashed sweet potato</p>
+                  </div>
+                  <div class="day-actions">
+                    <button class="day-btn done-btn"
+                      onclick="setDayStatus('day-event-4','done')">✔
+                      Done</button>
+                    <button class="day-btn notdone-btn"
+                      onclick="setDayStatus('day-event-4','notdone')">✕ Not
+                      Done</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ================= MEDICATION SCHEDULE (FULL) ================= -->
+        <section class="page" id="medication">
+          <div class="page-header">
+            <div class="eyebrow">Prescriptions</div>
+            <h1>My Medication Schedule</h1>
+            <p>Every dose, on time, tracked in one place.</p>
+          </div>
+
+          <div class="stack" style="gap:48px;">
+            <ul class="rx-timeline" style="list-style:none;margin:0;padding:0;">
+              <li class="rx-item missed" id="rx-item-aspirin"
+                data-status="pending">
+                <div class="rx-time-label">
+                  <b>7:00</b><span>AM</span>
+                </div>
+                <div class="rx-card">
+                  <div class="rx-left">
+                    <div class="icon-badge">✖</div>
+                    <div class="rx-name">
+                      <h4>Missed Dose</h4>
+                      <p class="sub">Aspirin (81mg) was not confirmed as
+                        taken</p>
+                    </div>
+                  </div>
+                  <div class="rx-actions">
+                    <button class="rx-btn taken"
+                      onclick="setRxStatusLocked('rx-item-aspirin','taken')">✔
+                      Taken</button>
+                    <button class="rx-btn missed"
+                      onclick="setRxStatusLocked('rx-item-aspirin','missed')">✕
+                      Missed</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <div class="rx-current" id="rx-item-metformin"
+              data-status="pending">
+              <div class="rx-current-left">
+                <div class="icon-badge">💊</div>
+                <div class="rx-current-name">
+                  <h4>Metformin</h4>
+                  <p>500mg · With Lunch</p>
+                  <em>Take with food to reduce stomach upset.</em>
+                </div>
+              </div>
+              <div class="rx-actions">
+                <button class="rx-btn taken"
+                  onclick="setRxStatusLocked('rx-item-metformin','taken')">✔
+                  Taken</button>
+                <button class="rx-btn missed"
+                  onclick="setRxStatusLocked('rx-item-metformin','missed')">✕
+                  Missed</button>
+              </div>
+            </div>
+
+            <ul class="rx-timeline" style="list-style:none;margin:0;padding:0;">
+              <li class="rx-item upcoming" id="rx-item-1" data-status="pending">
+                <div class="rx-time-label"><b>3:00</b><span>PM</span></div>
+                <div class="rx-card">
+                  <div class="rx-left">
+                    <div class="icon-badge">💊</div>
+                    <div class="rx-name">
+                      <h4>Atorvastatin</h4>
+                      <p class="sub">20mg · Cholesterol management</p>
+                    </div>
+                  </div>
+                  <div class="rx-actions">
+                    <button class="rx-btn taken"
+                      onclick="setRxStatusLocked('rx-item-1','taken')">✔
+                      Taken</button>
+                    <button class="rx-btn missed"
+                      onclick="setRxStatusLocked('rx-item-1','missed')">✕
+                      Missed</button>
+                  </div>
+                </div>
+              </li>
+              <li class="rx-item night" id="rx-item-2" data-status="pending">
+                <div class="rx-time-label"><b>9:00</b><span>PM</span></div>
+                <div class="rx-card">
+                  <div class="rx-left">
+                    <div class="icon-badge">🌙</div>
+                    <div class="rx-name">
+                      <h4>Melatonin</h4>
+                      <p class="sub">5mg · Sleep support</p>
+                    </div>
+                  </div>
+                  <div class="rx-actions">
+                    <button class="rx-btn taken"
+                      onclick="setRxStatusLocked('rx-item-2','taken')">✔
+                      Taken</button>
+                    <button class="rx-btn missed"
+                      onclick="setRxStatusLocked('rx-item-2','missed')">✕
+                      Missed</button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <div class="info-banner">
+              <div class="glyph">ℹ</div>
+              <div>
+                <h4>Reminder</h4>
+                <p>Notify a caregiver immediately if a dose is missed by more
+                  than two hours, or if any side effects are noticed.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= BILLING ================= -->
+        <section class="page" id="billing">
+          <div class="billing-top">
+            <div class="page-header" style="margin-bottom:0;">
+              <h1>Billing</h1>
+              <p>Manage invoices, payment history, and saved payment
+                methods.</p>
+            </div>
+            <div class="donate-chip" onclick="openModal('donationOverlay')"><span
+                class="glyph">♥</span><b>Donation</b></div>
+          </div>
+
+          <div class="grid-2">
+            <div class="invoice-card card-flat">
+              <div class="overlay-circle"></div>
+              <div class="invoice-head">
+                <div>
+                  <span class="invoice-status">Current Invoice</span>
+                  <h2>September Care Plan</h2>
+                  <p>Billing period: Sep 1 – Sep 30, 2026</p>
+                </div>
+                <div class="invoice-due">
+                  <div class="lbl">Amount due Sep 30</div>
+                  <div class="amt">$4,280</div>
+                </div>
+              </div>
+              <div class="invoice-lines">
+                <div class="invoice-line">
+                  <div class="invoice-line-left"><div
+                      class="box">🏠</div><span>Room & Board</span></div>
+                  <b>$3,200</b>
+                </div>
+                <div class="invoice-line">
+                  <div class="invoice-line-left"><div
+                      class="box">💊</div><span>Medication
+                      Management</span></div>
+                  <b>$680</b>
+                </div>
+                <div class="invoice-line">
+                  <div class="invoice-line-left"><div
+                      class="box">🩺</div><span>Premium Care Add-on</span></div>
+                  <b>$400</b>
+                </div>
+              </div>
+
+              <div class="payment-method-section">
+                <h3 class="payment-method-title">Payment Method</h3>
+                <div class="payment-method-list">
+
+                  <label class="payment-method-item">
+                    <input type="radio" name="paymentMethod"
+                      value="bkash">
+                    <span class="pm-icon">📱</span>
+                    <span class="pm-info">
+                      <span class="pm-name">bKash</span>
+                      <span class="pm-sub">01XXXXXXXXX</span>
+                    </span>
+                  </label>
+
+                  <label class="payment-method-item">
+                    <input type="radio" name="paymentMethod"
+                      value="nagad">
+                    <span class="pm-icon">📱</span>
+                    <span class="pm-info">
+                      <span class="pm-name">Nagad</span>
+                      <span class="pm-sub">01XXXXXXXXX</span>
+                    </span>
+                  </label>
+
+                  <label class="payment-method-item">
+                    <input type="radio" name="paymentMethod"
+                      value="visa" checked>
+                    <span class="pm-icon">💳</span>
+                    <span class="pm-info">
+                      <span class="pm-name">Visa</span>
+                      <span class="pm-sub">Debit or Credit Card</span>
+                    </span>
+                  </label>
+
+                  <label class="payment-method-item">
+                    <input type="radio" name="paymentMethod"
+                      value="mastercard">
+                    <span class="pm-icon">💳</span>
+                    <span class="pm-info">
+                      <span class="pm-name">Mastercard</span>
+                      <span class="pm-sub">Debit or Credit Card</span>
+                    </label>
+
+                    <label class="payment-method-item">
+                      <input type="radio" name="paymentMethod"
+                        value="bank">
+                      <span class="pm-icon">🏦</span>
+                      <span class="pm-info">
+                        <span class="pm-name">Bank Transfer
+                          (ACH)</span>
+                        <span class="pm-sub">Checking
+                          ****1123</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="invoice-actions">
+                  <button class="btn btn-primary"
+                    style="padding:16px 32px;border-radius:12px;font-size:16px;"
+                    onclick="payInvoice(this)">Pay Now</button>
+                </div>
+              </div>
+
+              <div class="stack">
+                <div class="billing-side">
+                  <h3>Payment History</h3>
+                  <div class="history-list">
+                    <div class="history-item">
+                      <div class="history-left"><div
+                          class="history-icon">✔</div><div><div
+                            class="month">August</div><div class="date">Paid Sep
+                            1</div></div></div>
+                      <div class="amount">$4,150</div>
+                    </div>
+                    <div class="history-item">
+                      <div class="history-left"><div
+                          class="history-icon">✔</div><div><div
+                            class="month">July</div><div class="date">Paid Aug
+                            1</div></div></div>
+                      <div class="amount">$4,150</div>
+                    </div>
+                    <div class="history-item">
+                      <div class="history-left"><div
+                          class="history-icon">✔</div><div><div
+                            class="month">June</div><div class="date">Paid Jul
+                            1</div></div></div>
+                      <div class="amount">$4,050</div>
+                    </div>
+                  </div>
+                  <button class="btn btn-mint history-more" style="width:100%;justify-content:center;" onclick="showPage('billing-history')">View All History →</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        <!-- ================= BILLING HISTORY ================= -->
+        <section class="page" id="billing-history">
+          <div class="app">
+            <main class="main">
+
+                <header class="page-header">
+                    <div>
+                        <h1>Payment History</h1>
+                        <p class="subtitle">Full record of past invoices and payments for Eleanor Thompson.</p>
+                    </div>
+                    <a href="#billing" class="btn btn-secondary" onclick="showPage('billing')">← Back to Billing</a>
+                </header>
+
+                <section class="card history-card full-history">
+                    <ul class="history-list">
+                        <li>
+                            <span class="check">✔</span>
+                            <div class="history-details">
+                                <div class="history-month">July Invoice</div>
+                                <div class="history-date">Paid on July 28</div>
+                            </div>
+                            <div class="history-amount">$3,420.00</div>
+                        </li>
+                        <li>
+                            <span class="check">✔</span>
+                            <div class="history-details">
+                                <div class="history-month">June Invoice</div>
+                                <div class="history-date">Paid on June 29</div>
+                            </div>
+                            <div class="history-amount">$3,420.00</div>
+                        </li>
+                        <li>
+                            <span class="check">✔</span>
+                            <div class="history-details">
+                                <div class="history-month">May Invoice</div>
+                                <div class="history-date">Paid on May 27</div>
+                            </div>
+                            <div class="history-amount">$3,150.00</div>
+                        </li>
+                        <li>
+                            <span class="check">✔</span>
+                            <div class="history-details">
+                                <div class="history-month">April Invoice</div>
+                                <div class="history-date">Paid on April 27</div>
+                            </div>
+                            <div class="history-amount">$3,150.00</div>
+                        </li>
+                        <li>
+                            <span class="check">✔</span>
+                            <div class="history-details">
+                                <div class="history-month">March Invoice</div>
+                                <div class="history-date">Paid on March 28</div>
+                            </div>
+                            <div class="history-amount">$2,980.00</div>
+                        </li>
+                    </ul>
+                </section>
+
+            </main>
+          </div>
+        </section>
+
+          <!-- ================= MEAL OPTIONS ================= -->
+          <section class="page" id="meal-options">
+            <div class="meal-search">
+              <div class="page-header" style="margin-bottom:0;">
+                <h1>Meal Options</h1>
+                <p>Browse meals suited to dietary needs and preferences.</p>
+              </div>
+              <div class="search-box">
+                <span class="glyph">🔍</span>
+                <input type="text" id="mealSearchInput"
+                  placeholder="Search specific meals..." autocomplete="off">
+                <div class="search-suggestions" id="searchSuggestions"></div>
+              </div>
+            </div>
+
+            <div class="selected-meals-bar" id="selectedMealsBar">
+              <div class="selected-meals-list" id="selectedMealsList"></div>
+              <button class="btn btn-primary" id="confirmMealsBtn"
+                onclick="confirmMealSelection()">Confirm Selection</button>
+            </div>
+
+            <div class="filters-title"><span
+                style="font-size:20px;">▤</span><h3>Filter by Dietary
+                Need</h3></div>
+            <div class="filter-grid">
+              <label class="filter-chip"><input type="checkbox"
+                  checked><span>Low Sodium</span></label>
+              <label class="filter-chip"><input type="checkbox"><span>Diabetic
+                  Friendly</span></label>
+              <label class="filter-chip"><input type="checkbox"><span>Soft
+                  Foods</span></label>
+              <label class="filter-chip"><input
+                  type="checkbox"><span>Vegetarian</span></label>
+              <label class="filter-chip"><input type="checkbox"><span>Heart
+                  Healthy</span></label>
+              <label class="filter-chip"><input type="checkbox"><span>High
+                  Protein</span></label>
+            </div>
+            <button class="btn btn-primary filters-apply"
+              onclick="applyFilters()">Apply Filters</button>
+
+            <div class="meal-grid" id="mealGrid">
+              <div class="meal-card" data-tags="Heart Healthy,Low Sodium">
+                <div class="meal-photo"
+                  style="background:#A9C9BE url('https://commons.wikimedia.org/wiki/Special:FilePath/File:Grilled%20plated%20salmon%20fillet.jpg?width=800') center/cover no-repeat;">
+                  <span class="meal-tag">Heart Healthy</span><span
+                    class="meal-tag">Low Sodium</span>
+                </div>
+                <div class="meal-body">
+                  <h4>Poached Salmon with Steamed Greens</h4>
+                  <p>Gently cooked salmon served with tender, vitamin-rich
+                    spinach. Easy to digest and heart healthy.</p>
+                  <div class="meal-meta"><span>🔥 420 cal</span><span>⏱ 20
+                      min</span></div>
+                  <button class="btn btn-dark-block"
+                    onclick="selectMeal('Poached Salmon with Steamed Greens', this)">Select
+                    Meal</button>
+                </div>
+              </div>
+
+              <div class="meal-card" data-tags="Soft Foods,Diabetic Friendly">
+                <div class="meal-photo"
+                  style="background:#E8B88A url('https://commons.wikimedia.org/wiki/Special:FilePath/File:Acorn%20squash%20soup%20(29307899768).jpg?width=800') center/cover no-repeat;">
+                  <span class="meal-tag">Soft Foods</span><span
+                    class="meal-tag">Diabetic Friendly</span>
+                </div>
+                <div class="meal-body">
+                  <h4>Creamy Butternut Squash Soup</h4>
+                  <p>A silky, smooth soup made with roasted autumn squash and
+                    subtle herbs. Perfect for difficulty swallowing.</p>
+                  <div class="meal-meta"><span>🔥 280 cal</span><span>⏱ 15
+                      min</span></div>
+                  <button class="btn btn-dark-block"
+                    onclick="selectMeal('Creamy Butternut Squash Soup', this)">Select
+                    Meal</button>
+                </div>
+              </div>
+
+              <div class="meal-card" data-tags="High Protein,Soft Foods">
+                <div class="meal-photo"
+                  style="background:#C99B76 url('https://commons.wikimedia.org/wiki/Special:FilePath/File:Roasted%20Chicken%20Dinner%20Plate,%20Broccoli,%20Stuffing,%20Potatoes,%20Demi%20Glace.jpg?width=800') center/cover no-repeat;">
+                  <span class="meal-tag">High Protein</span><span
+                    class="meal-tag">Soft Foods</span>
+                </div>
+                <div class="meal-body">
+                  <h4>Tender Herb Chicken & Mash</h4>
+                  <p>Slow-cooked chicken breast with creamy mashed sweet
+                    potatoes and soft carrots. High in protein for muscle
+                    maintenance.</p>
+                  <div class="meal-meta"><span>🔥 510 cal</span><span>⏱ 30
+                      min</span></div>
+                  <button class="btn btn-dark-block"
+                    onclick="selectMeal('Tender Herb Chicken & Mash', this)">Select
+                    Meal</button>
+                </div>
+              </div>
+
+              <div class="meal-card" data-tags="Vegetarian,Heart Healthy">
+                <div class="meal-photo"
+                  style="background:#C77B5E url('https://commons.wikimedia.org/wiki/Special:FilePath/File:Vegetable%20Salad%20(Unsplash).jpg?width=800') center/cover no-repeat;">
+                  <span class="meal-tag">Vegetarian</span><span
+                    class="meal-tag">High Fiber</span>
+                </div>
+                <div class="meal-body">
+                  <h4>Quinoa & Roasted Beet Medley</h4>
+                  <p>A colorful, fiber-rich grain bowl with soft-roasted beets
+                    and avocado. Excellent for digestive health and blood sugar
+                    stability.</p>
+                  <div class="meal-meta"><span>🔥 360 cal</span><span>⏱ 25
+                      min</span></div>
+                  <button class="btn btn-dark-block"
+                    onclick="selectMeal('Quinoa & Roasted Beet Medley', this)">Select
+                    Meal</button>
+                </div>
+              </div>
+
+              <div class="meal-card" data-tags="Low Sodium,Vegetarian">
+                <div class="meal-photo"
+                  style="background:#B8C99E url('https://commons.wikimedia.org/wiki/Special:FilePath/File:Freekeh%20with%20roasted%20vegetables.jpg?width=800') center/cover no-repeat;">
+                  <span class="meal-tag">Low Sodium</span><span
+                    class="meal-tag">Vegetarian</span>
+                </div>
+                <div class="meal-body">
+                  <h4>Herb-Roasted Vegetable & Grain Medley</h4>
+                  <p>A warm mix of roasted seasonal vegetables over whole
+                    grains, lightly seasoned with herbs instead of salt.</p>
+                  <div class="meal-meta"><span>🔥 340 cal</span><span>⏱ 25
+                      min</span></div>
+                  <button class="btn btn-dark-block"
+                    onclick="selectMeal('Herb-Roasted Vegetable & Grain Medley', this)">Select
+                    Meal</button>
+                </div>
+              </div>
+
+              <div class="meal-card" data-tags="Diabetic Friendly,High Protein">
+                <div class="meal-photo"
+                  style="background:#8FAE7A url('https://commons.wikimedia.org/wiki/Special:FilePath/File:Pesto%20Chicken%20and%20Grilled%20Zucchini.jpg?width=800') center/cover no-repeat;">
+                  <span class="meal-tag">Diabetic Friendly</span><span
+                    class="meal-tag">High Protein</span>
+                </div>
+                <div class="meal-body">
+                  <h4>Grilled Chicken with Zucchini</h4>
+                  <p>Lean grilled chicken breast paired with garden zucchini —
+                    balanced protein and fiber to help steady blood sugar.</p>
+                  <div class="meal-meta"><span>🔥 390 cal</span><span>⏱ 20
+                      min</span></div>
+                  <button class="btn btn-dark-block"
+                    onclick="selectMeal('Grilled Chicken with Zucchini', this)">Select
+                    Meal</button>
+                </div>
+              </div>
+
+              <div class="meal-card"
+                data-tags="Heart Healthy,Diabetic Friendly">
+                <div class="meal-photo"
+                  style="background:#E3C79A url('https://commons.wikimedia.org/wiki/Special:FilePath/File:Fruit%20and%20Honey%20French%20Oatmeal%202.jpg?width=800') center/cover no-repeat;">
+                  <span class="meal-tag">Heart Healthy</span><span
+                    class="meal-tag">Diabetic Friendly</span>
+                </div>
+                <div class="meal-body">
+                  <h4>Warm Oatmeal with Fresh Berries</h4>
+                  <p>Slow-cooked oats topped with fresh seasonal berries —
+                    steady energy with no added sugar.</p>
+                  <div class="meal-meta"><span>🔥 260 cal</span><span>⏱ 10
+                      min</span></div>
+                  <button class="btn btn-dark-block"
+                    onclick="selectMeal('Warm Oatmeal with Fresh Berries', this)">Select
+                    Meal</button>
+                </div>
+              </div>
+
+              <div class="meal-card" data-tags="High Protein,Low Sodium">
+                <div class="meal-photo"
+                  style="background:#D9B79A url('https://commons.wikimedia.org/wiki/Special:FilePath/File:Turkey%20breast%20rolls%20with%20avocado.jpg?width=800') center/cover no-repeat;">
+                  <span class="meal-tag">High Protein</span><span
+                    class="meal-tag">Low Sodium</span>
+                </div>
+                <div class="meal-body">
+                  <h4>Sliced Turkey Breast with Green Beans</h4>
+                  <p>Lean roasted turkey breast served with steamed green beans,
+                    seasoned salt-free with fresh herbs.</p>
+                  <div class="meal-meta"><span>🔥 380 cal</span><span>⏱ 25
+                      min</span></div>
+                  <button class="btn btn-dark-block"
+                    onclick="selectMeal('Sliced Turkey Breast with Green Beans', this)">Select
+                    Meal</button>
+                </div>
+              </div>
+
+              <div class="meal-card" data-tags="Vegetarian,Low Sodium">
+                <div class="meal-photo"
+                  style="background:#C8985E url('https://commons.wikimedia.org/wiki/Special:FilePath/File:Tofu%20stir-fry.jpeg?width=800') center/cover no-repeat;">
+                  <span class="meal-tag">Vegetarian</span><span
+                    class="meal-tag">Low Sodium</span>
+                </div>
+                <div class="meal-body">
+                  <h4>Vegetable & Tofu Stir-Fry</h4>
+                  <p>Soft tofu and colorful vegetables lightly stir-fried in a
+                    low-sodium sauce — easy on digestion.</p>
+                  <div class="meal-meta"><span>🔥 310 cal</span><span>⏱ 20
+                      min</span></div>
+                  <button class="btn btn-dark-block"
+                    onclick="selectMeal('Vegetable & Tofu Stir-Fry', this)">Select
+                    Meal</button>
+                </div>
+              </div>
+
+              <div class="meal-card" data-tags="Soft Foods,Vegetarian">
+                <div class="meal-photo"
+                  style="background:#E0A75E url('https://commons.wikimedia.org/wiki/Special:FilePath/File:2020-11-26%2004%2025%2029%20A%20sample%20of%20Wegman%27s%20mashed%20sweet%20potato%20in%20the%20Dulles%20section%20of%20Sterling%2C%20Loudoun%20County%2C%20Virginia.jpg?width=800') center/cover no-repeat;">
+                  <span class="meal-tag">Soft Foods</span><span
+                    class="meal-tag">Vegetarian</span>
+                </div>
+                <div class="meal-body">
+                  <h4>Creamy Mashed Sweet Potato</h4>
+                  <p>Smooth, naturally sweet mashed sweet potato — gentle on the
+                    mouth and easy to swallow.</p>
+                  <div class="meal-meta"><span>🔥 230 cal</span><span>⏱ 15
+                      min</span></div>
+                  <button class="btn btn-dark-block"
+                    onclick="selectMeal('Creamy Mashed Sweet Potato', this)">Select
+                    Meal</button>
+                </div>
+              </div>
+            </div>
+            <p id="mealEmptyState"
+              style="display:none;font-size:17px;color:var(--ink-700);text-align:center;padding:40px 0;">No
+              meals match the selected filters. Try a different combination.</p>
+
+            <div class="meal-banner">
+              <div class="badge">🔔</div>
+              <div class="meal-banner-text">
+                <h4>Need a custom meal request?</h4>
+                <p>Let the kitchen team know about any new preferences,
+                  allergies, or special occasion requests.</p>
+              </div>
+              <button class="btn btn-outline" onclick="openCustomMeal()">Request
+                Custom Meal</button>
+            </div>
+          </section>
+
+        </main>
+      </div>
+
+      <!-- ===== Toast stack ===== -->
+      <div class="toast-stack" id="toastStack"></div>
+
+      <!-- ===== Generic success modal (meal selected) ===== -->
+      <div class="modal-overlay" id="successModal">
+        <div class="modal-card">
+          <button class="modal-close" onclick="closeModal('successModal')"
+            aria-label="Close">✕</button>
+          <div class="success-icon">✔</div>
+          <div class="modal-title" id="successTitle">Meal Selected</div>
+          <div class="modal-sub" id="successSub"></div>
+          <button class="modal-done-btn"
+            onclick="closeModal('successModal')">Done</button>
+        </div>
+      </div>
+
+      <!-- ===== Custom meal request modal ===== -->
+      <div class="modal-overlay" id="customMealModal">
+        <div class="modal-card" id="customMealCard">
+          <button class="modal-close" onclick="closeModal('customMealModal')"
+            aria-label="Close">✕</button>
+          <div id="customMealFormView">
+            <div class="modal-form-title">Request a Custom Meal</div>
+            <div class="modal-form-sub">Tell the kitchen team about any
+              preferences, allergies, or special occasion requests.</div>
+            <textarea class="custom-meal-textarea" id="customMealText"
+              placeholder="E.g. Could I get a low-sodium version of tonight's soup, no added salt please?"></textarea>
+            <div class="modal-form-actions">
+              <button class="btn-cancel"
+                onclick="closeModal('customMealModal')">Cancel</button>
+              <button class="btn-send" onclick="sendCustomMeal()">Send
+                Request</button>
+            </div>
+          </div>
+          <div id="customMealDoneView" style="display:none;">
+            <div class="success-icon">✔</div>
+            <div class="modal-title">Order Completed</div>
+            <div class="modal-sub">Your custom meal request has been sent to the
+              kitchen team. They'll confirm it with you shortly.</div>
+            <button class="modal-done-btn"
+              onclick="closeModal('customMealModal')">Done</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Detailed health report modal ===== -->
+      <div class="modal-overlay" id="healthReportModal">
+        <div class="modal-card wide">
+          <button class="modal-close" onclick="closeModal('healthReportModal')"
+            aria-label="Close">✕</button>
+          <div class="report-date">Today · Sep 6, 2026</div>
+          <div class="report-title">Daily Health Report — Arthur Miller</div>
+          <div class="report-table">
+            <div class="report-row">
+              <div class="rl"><span class="ic">❤</span>Heart Rate</div>
+              <div class="rr"><span class="rv">72 bpm</span><span
+                  class="pill green">Normal</span></div>
+            </div>
+            <div class="report-row">
+              <div class="rl"><span class="ic">🩸</span>Blood Oxygen</div>
+              <div class="rr"><span class="rv">98%</span><span
+                  class="pill green">Normal</span></div>
+            </div>
+            <div class="report-row">
+              <div class="rl"><span class="ic">🌡</span>Temperature</div>
+              <div class="rr"><span class="rv">98.4°F</span><span
+                  class="pill blue">Stable</span></div>
+            </div>
+            <div class="report-row">
+              <div class="rl"><span class="ic">🫀</span>Blood Pressure</div>
+              <div class="rr"><span class="rv">142/90</span><span class="pill"
+                  style="background:var(--red-bg);color:var(--red-tx);">Elevated</span></div>
+            </div>
+            <div class="report-row">
+              <div class="rl"><span class="ic">🩸</span>Blood Sugar</div>
+              <div class="rr"><span class="rv">118 mg/dL</span><span
+                  class="pill green">Normal</span></div>
+            </div>
+            <div class="report-row">
+              <div class="rl"><span class="ic">💊</span>Medication
+                Adherence</div>
+              <div class="rr"><span class="rv">2 of 3 doses</span><span
+                  class="pill blue">On Track</span></div>
+            </div>
+          </div>
+          <div class="report-note">📋 Note: Blood pressure is trending above
+            target. Care team has been notified for a follow-up check this
+            afternoon.</div>
+          <button class="modal-done-btn"
+            onclick="closeModal('healthReportModal')">Close Report</button>
+        </div>
+      </div>
+
+      <!-- ===== Edit dietary restrictions modal ===== -->
+      <div class="modal-overlay" id="editRestrictionsModal">
+        <div class="modal-card" id="editRestrictionsCard">
+          <button class="modal-close"
+            onclick="closeModal('editRestrictionsModal')"
+            aria-label="Close">✕</button>
+          <div id="editRestrictionsFormView">
+            <div class="modal-form-title">Add a Dietary Restriction</div>
+            <div class="modal-form-sub">Describe the new restriction or care
+              note to add to Arthur's profile.</div>
+            <textarea class="custom-meal-textarea" id="editRestrictionsText"
+              placeholder="E.g. No shellfish — mild allergy reported by family on Sep 5"></textarea>
+            <div class="modal-form-actions">
+              <button class="btn-cancel"
+                onclick="closeModal('editRestrictionsModal')">Cancel</button>
+              <button class="btn-send" onclick="addRestriction()">Done</button>
+            </div>
+          </div>
+          <div id="editRestrictionsDoneView" style="display:none;">
+            <div class="success-icon">✔</div>
+            <div class="modal-title">Restriction Added</div>
+            <div class="modal-sub">The new dietary note has been saved to
+              Arthur's health profile.</div>
+            <button class="modal-done-btn"
+              onclick="closeModal('editRestrictionsModal')">Done</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Donation modal ===== -->
+      <div class="modal-overlay" id="donationOverlay">
+          <div class="modal-card wide" role="dialog" aria-modal="true"
+              aria-labelledby="donationTitle">
+              <button class="modal-close" id="donationClose"
+                  onclick="closeModal('donationOverlay')"
+                  aria-label="Close">&times;</button>
+              <div class="modal-form-title" id="donationTitle">Make a
+                  Donation</div>
+              <div class="modal-form-sub">Support Arthur's care with a
+                  one-time contribution.</div>
+
+              <form class="donation-form" id="donationForm">
+                  <label class="donation-field">
+                      <span>Amount</span>
+                      <input type="number" name="amount" placeholder="$ 0.00"
+                          min="1" step="0.01" required>
+                  </label>
+
+                  <label class="donation-field">
+                      <span>Payment Method</span>
+                      <select name="paymentMethod" required>
+                          <option value disabled selected>Select a payment
+                              method</option>
+
+                          <option value="bkash">bKash</option>
+                          <option value="nagad">Nagad</option>
+                          <option value="visa">Visa</option>
+                          <option value="mastercard">Mastercard</option>
+                          <option value="bank">Bank Transfer</option>
+                          <option value="new-card">Use a new card</option>
+                      </select>
+                  </label>
+
+                  <label class="donation-field">
+                      <span>Message (optional)</span>
+                      <textarea name="message" rows="3"
+                          placeholder="Add a note"></textarea>
+                  </label>
+
+                  <div class="donation-actions">
+                      <button type="button" class="btn-cancel"
+                          id="donationCancel"
+                          onclick="closeModal('donationOverlay')">Cancel</button>
+                      <button type="submit" class="btn-send">Donate</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+
+      <script src="script.js"></script>
+
+    </body>
+  </html>

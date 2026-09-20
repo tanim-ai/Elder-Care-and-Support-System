@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generated Page</title>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareDirect - Unified Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="global.css">
+<style id="sections-styles">
+
+.login-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+  }
+
+  .background-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .decor-circle {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .decor-top-left {
+    width: 384px;
+    height: 384px;
+    background-color: rgba(0, 83, 91, 0.1);
+    filter: blur(64px);
+    top: -96px;
+    left: -96px;
+  }
+
+  .decor-bottom-right {
+    width: 500px;
+    height: 500px;
+    background-color: rgba(35, 104, 99, 0.05);
+    filter: blur(64px);
+    bottom: -100px;
+    right: -100px;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1280px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding: 40px;
+  }
+
+  .brand-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    max-width: 548px;
+  }
+
+  .brand-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .brand-title {
+    color: #00535b;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .brand-subtitle {
+    color: #3e494a;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 448px;
+  }
+
+  .brand-image-container {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .brand-image-blur {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(to right, #00535b, #236863);
+    border-radius: 12px;
+    filter: blur(8px);
+    opacity: 0.25;
+    z-index: 0;
+  }
+
+  .brand-image {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px -4px rgba(0, 0, 0, 0.1), 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+  .brand-features {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .feature-item {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    flex: 1;
+  }
+
+  .feature-text {
+    color: #161d1f;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .login-section {
+    width: 100%;
+    max-width: 548px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .login-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.1), 0px 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .login-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .login-title {
+    color: #161d1f;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .login-subtitle {
+    color: #3e494a;
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .role-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 8px;
+  }
+
+  .role-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .role-tab {
+    background-color: #eef5f7;
+    color: #3e494a;
+    border: 1px solid transparent;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  .role-tab:hover {
+    background-color: rgba(0, 83, 91, 0.1);
+  }
+
+  .role-tab.active {
+    background-color: #006d77;
+    color: #9becf7;
+  }
+
+  .role-description {
+    color: #3e494a;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-label {
+    color: #161d1f;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .input-icon-left {
+    position: absolute;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .input-icon-right {
+    position: absolute;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .form-input {
+    width: 100%;
+    background-color: #eef5f7;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 16px 16px 16px 48px;
+    font-size: 14px;
+    color: #161d1f;
+    transition: border-color 0.2s;
+  }
+
+  .form-input::placeholder {
+    color: #6b7280;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: #00535b;
+  }
+
+  .btn-primary {
+    background-color: #00535b;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s;
+  }
+
+  .btn-primary:hover {
+    background-color: #003d43;
+  }
+
+  .login-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(190, 200, 202, 0.3);
+  }
+
+  .help-text {
+    color: #3e494a;
+    font-size: 14px;
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: #00535b;
+    border: 1px solid rgba(0, 83, 91, 0.3);
+    border-radius: 9999px;
+    padding: 8px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(0, 83, 91, 0.05);
+  }
+
+  .back-home-wrapper {
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-home {
+    background-color: transparent;
+    color: #3e494a;
+    border: 1px solid rgba(62, 73, 74, 0.2);
+    border-radius: 9999px;
+    padding: 8px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-home:hover {
+    background-color: rgba(0, 83, 91, 0.05);
+    border-color: rgba(0, 83, 91, 0.3);
+    color: #00535b;
+  }
+
+  .btn-home svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  @media (max-width: 1024px) {
+    .container {
+      flex-direction: column;
+      padding: 20px;
+    }
+    
+    .login-section {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .brand-features {
+      flex-direction: column;
+    }
+    
+    .login-card {
+      padding: 24px;
+    }
+  }
+</style>
+<script src="global.js" defer></script>
+</head>
+<style>
+  .status-toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    width: min(390px, calc(100vw - 32px));
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 16px 16px 16px 17px;
+    border-radius: 14px;
+    font-family: 'Inter', sans-serif;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 35px rgba(0, 35, 40, 0.16);
+    animation: toastIn 0.45s cubic-bezier(.2,.8,.2,1);
+    overflow: hidden;
+  }
+
+  .status-toast.success {
+    border: 1px solid rgba(0, 109, 119, 0.18);
+  }
+
+  .status-toast.error {
+    border: 1px solid rgba(179, 38, 30, 0.18);
+  }
+
+  .status-toast::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+  }
+
+  .status-toast.success::after {
+    background: #006d77;
+  }
+
+  .status-toast.error::after {
+    background: #b3261e;
+  }
+
+  .status-icon {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .success .status-icon {
+    background: #e6f6f4;
+    color: #006d77;
+  }
+
+  .error .status-icon {
+    background: #fdecea;
+    color: #b3261e;
+  }
+
+  .status-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .status-title {
+    margin: 1px 0 3px;
+    color: #161d1f;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .status-message {
+    margin: 0;
+    color: #596566;
+    font-size: 13px;
+    line-height: 1.45;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+  }
+
+  .status-close {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #7b8586;
+    font-size: 19px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .status-close:hover {
+    background: #eef5f7;
+    color: #161d1f;
+  }
+
+  .status-progress {
+    position: absolute;
+    left: 4px;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    transform-origin: left;
+    animation: toastProgress 5s linear forwards;
+  }
+
+  .success .status-progress {
+    background: #006d77;
+  }
+
+  .error .status-progress {
+    background: #b3261e;
+  }
+
+  @keyframes toastIn {
+    from {
+      opacity: 0;
+      transform: translateX(35px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  @keyframes toastOut {
+    from {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(35px) scale(0.96);
+    }
+  }
+
+  @keyframes toastProgress {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+  }
+
+  @media (max-width: 600px) {
+    .status-toast {
+      top: 14px;
+      right: 16px;
+      left: 16px;
+      width: auto;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const isSuccess = params.get('status') === 'success';
+  const msg = isSuccess ? 'Registration Successful! Please sign in.' : params.get('error');
+
+  if (!msg) return;
+
+  const toast = document.createElement('div');
+  toast.className = `status-toast ${isSuccess ? 'success' : 'error'}`;
+  toast.setAttribute('role', isSuccess ? 'status' : 'alert');
+
+  const icon = isSuccess ? '✓' : '!';
+  const title = isSuccess ? 'Success!' : 'Something went wrong';
+
+  toast.innerHTML = `
+    <div class="status-icon">${icon}</div>
+    <div class="status-content">
+      <div class="status-title">${title}</div>
+      <p class="status-message"></p>
+    </div>
+    <button class="status-close" type="button" aria-label="Close notification">&times;</button>
+    <div class="status-progress"></div>
+  `;
+
+  toast.querySelector('.status-message').textContent = msg;
+  document.body.appendChild(toast);
+
+  const closeToast = () => {
+    toast.style.animation = 'toastOut 0.3s ease forwards';
+    setTimeout(() => toast.remove(), 300);
+  };
+
+  toast.querySelector('.status-close').addEventListener('click', closeToast);
+  setTimeout(closeToast, 5000);
+});
+</script>
+<body>
+<section id="section-login" class="login-page">
+  <div class="background-decorations">
+    <div class="decor-circle decor-top-left"></div>
+    <div class="decor-circle decor-bottom-right"></div>
+  </div>
+  
+  <div class="container">
+    <div class="brand-section">
+      <div class="brand-header">
+        <h1 class="brand-title">CareDirect</h1>
+        <p class="brand-subtitle">Empowering senior care through dignified, clear, and safe digital solutions. Welcome to your unified care portal.</p>
+      </div>
+      
+      <div class="brand-image-container">
+        <div class="brand-image-blur"></div>
+        <img class="brand-image" src="images/f7bca8a5562247ce482c06b993631487e242f3af.png" alt="CareDirect Facility">
+      </div>
+      
+      <div class="brand-features">
+        <div class="feature-item">
+          <img src="images/2052_2008.svg" alt="Secure Access Icon">
+          <span class="feature-text">Secure Access</span>
+        </div>
+        <div class="feature-item">
+          <img src="images/2052_2013.svg" alt="Unified Portal Icon">
+          <span class="feature-text">Unified Portal</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="login-section">
+      <div class="login-card">
+        <div class="login-header">
+          <h2 class="login-title">Welcome</h2>
+          <p class="login-subtitle">Please sign in to access your dashboard.</p>
+        </div>
+        
+        <div class="role-toggle">
+          <div class="role-tabs" role="radiogroup" aria-label="Select your role">
+            <button type="button" class="role-tab active" data-role="guardian" role="radio" aria-checked="true">Guardian</button>
+            <button type="button" class="role-tab" data-role="resident" role="radio" aria-checked="false">Resident</button>
+            <button type="button" class="role-tab" data-role="staff" role="radio" aria-checked="false">Staff</button>
+            <button type="button" class="role-tab" data-role="admin" role="radio" aria-checked="false">Admin</button>
+          </div>
+          <p class="role-description" id="roleDescription">Family member or care coordinator — sign in with your email and password.</p>
+        </div>
+        
+        <form class="login-form" id="loginForm" data-form="guardian">
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <div class="input-wrapper">
+              <div class="input-icon-left">
+                <img src="images/2052_2041.svg" alt="Email Icon">
+              </div>
+              <input type="email" id="email" name ="email" class="form-input" placeholder="name@example.com" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="form-label-row">
+              <label class="form-label" for="password">Password</label>
+            </div>
+            <div class="input-wrapper">
+              <div class="input-icon-left">
+                <img src="images/2052_2053.svg" alt="Password Icon">
+              </div>
+              <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required>
+            </div>
+          </div>
+          
+          <button type="submit" class="btn-primary">
+            Sign In
+            <img src="images/2052_2060.svg" alt="Sign In Arrow">
+          </button>
+        </form>
+        
+        <div class="login-footer">
+          <span class="help-text">Don't have an account?</span>
+          <a href="Registration.html" class="btn-secondary">Register Now</a>
+        </div>
+
+        <div class="back-home-wrapper">
+          <a href="../Homepage/index.html" class="btn-home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            Back to Home
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

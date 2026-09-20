@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareDirect - Donation</title>
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eaf3f5;
+            color: #000;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Prevent scrolling on desktop */
+        @media (min-width: 651px) {
+            html,
+            body {
+                overflow: hidden;
+            }
+        }
+
+
+        /* =====================================================
+           TOP BORDER
+        ===================================================== */
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #008da1;
+            z-index: 100;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+            width: 100%;
+            background-color: #eef5f7;
+            padding: 16px 20px;
+            box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+        .logo {
+            color: #00535b;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav-link {
+            color: #3e494a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: #00535b; }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-login, .btn-signup {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 24px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-login {
+            background: transparent;
+            border: 2px solid #bec8ca;
+            color: #161d1f;
+        }
+        .btn-login:hover { border-color: #00535b; }
+        .btn-signup {
+            background: #00535b;
+            color: #fff;
+            border: none;
+        }
+        .btn-signup:hover { background: #003d43; }
+
+
+        /* =====================================================
+           DECORATIVE STRIP
+        ===================================================== */
+
+        .decoration {
+            display: none;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main {
+            min-height: calc(100vh - 80px);
+
+            padding: 30px 4.8%;
+        }
+
+        .heading {
+            color: #005c66;
+
+            font-size: 30px;
+            font-weight: 700;
+
+            line-height: 1.2;
+
+            margin-bottom: 22px;
+        }
+
+
+        /* =====================================================
+           DONATION BOX
+        ===================================================== */
+
+        .donation-box {
+            width: 100%;
+            height: 530px;
+
+            background: #fff;
+
+            display: flex;
+
+            padding: 42px 6.5%;
+        }
+
+
+        /* =====================================================
+           LEFT FORM
+        ===================================================== */
+
+        .form-section {
+            width: 49%;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+
+            padding-right: 7%;
+        }
+
+        .form-row {
+            display: grid;
+
+            grid-template-columns: 125px 215px;
+
+            column-gap: 18px;
+
+            align-items: center;
+
+            margin-bottom: 22px;
+        }
+
+        .form-row:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Labels */
+
+        .form-row label {
+            width: 125px;
+
+            text-align: right;
+
+            font-size: 24px;
+            font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+        /* Inputs */
+
+        .form-row input {
+            width: 215px;
+            height: 32px;
+
+            border: none;
+            outline: none;
+
+            background: #f2f2f2;
+
+            padding: 5px 8px;
+
+            font-size: 14px;
+        }
+
+        .form-row input:focus {
+            background: #e9f3f4;
+        }
+
+
+        /* =====================================================
+           DIVIDER
+        ===================================================== */
+
+        .divider {
+            width: 1px;
+
+            background: #777;
+
+            align-self: center;
+
+            height: 307px;
+        }
+
+
+        /* =====================================================
+           RIGHT PAYMENT SECTION
+        ===================================================== */
+
+        .payment-section {
+            flex: 1;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            padding-left: 7%;
+        }
+
+
+        /* =====================================================
+           PAYMENT METHOD GRID
+        ===================================================== */
+
+        .payment-methods {
+            width: 100%;
+
+            max-width: 400px;
+
+            display: grid;
+
+            grid-template-columns: 175px 175px;
+
+            column-gap: 35px;
+            row-gap: 25px;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* =====================================================
+           PAYMENT CARDS
+        ===================================================== */
+
+        .payment-card {
+            width: 175px;
+            height: 100px;
+
+            background: #f8fafb;
+
+            border: 1px solid #e5e5e5;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            transition: 0.2s ease;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* =====================================================
+           PAYMENT LOGO IMAGES
+        ===================================================== */
+
+        .payment-card img {
+            width: 145px;
+            height: 75px;
+
+            max-width: 145px;
+            max-height: 75px;
+
+            object-fit: contain;
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           CARD PAYMENT ICON
+        ===================================================== */
+
+        .card-container {
+            background: #f8fafb;
+        }
+
+        .card {
+            width: 62px;
+            height: 40px;
+
+            border-radius: 6px;
+
+            background: #64a9f5;
+
+            position: relative;
+
+            transform: rotate(-8deg);
+
+            box-shadow:
+                inset 0 0 0 3px #4796e8;
+        }
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 19px;
+            height: 5px;
+
+            background: #ffd35c;
+
+            top: 8px;
+            left: 6px;
+
+            border-radius: 2px;
+        }
+
+        .card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 42px;
+            height: 5px;
+
+            background: #397fc8;
+
+            bottom: 8px;
+            left: 8px;
+
+            border-radius: 2px;
+        }
+
+
+        /* =====================================================
+           PAYMENT BUTTON
+        ===================================================== */
+
+        .payment-btn {
+            margin-top: 35px;
+
+            width: 245px;
+            height: 61px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: none;
+
+            background: #006873;
+            color: white;
+
+            font-size: 30px;
+            font-weight: 700;
+
+            text-decoration: none;
+
+            border-radius: 35px;
+
+            cursor: pointer;
+
+            transition: 0.2s ease;
+        }
+
+        .payment-btn:hover {
+            background: #00545d;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                padding: 0 25px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .nav-menu {
+                gap: 18px;
+            }
+
+            .nav-menu a {
+                font-size: 11px;
+            }
+
+            .contact-btn {
+                margin-left: 8px;
+
+                padding: 9px 18px;
+
+                font-size: 11px !important;
+            }
+
+
+            /* Main */
+
+            .main {
+                padding: 30px 25px;
+            }
+
+            .heading {
+                font-size: 26px;
+            }
+
+
+            /* Donation box */
+
+            .donation-box {
+                padding: 35px 30px;
+
+                min-height: 500px;
+                height: auto;
+            }
+
+
+            /* Form */
+
+            .form-section {
+                padding-right: 30px;
+            }
+
+            .form-row {
+                grid-template-columns: 95px 150px;
+
+                column-gap: 15px;
+            }
+
+            .form-row label {
+                width: 95px;
+
+                font-size: 18px;
+            }
+
+            .form-row input {
+                width: 150px;
+                height: 29px;
+            }
+
+
+            /* Divider */
+
+            .divider {
+                height: 285px;
+            }
+
+
+            /* Payment */
+
+            .payment-section {
+                padding-left: 30px;
+            }
+
+            .payment-methods {
+                max-width: 340px;
+
+                grid-template-columns: 145px 145px;
+
+                column-gap: 20px;
+                row-gap: 20px;
+            }
+
+            .payment-card {
+                width: 145px;
+                height: 85px;
+            }
+
+            .payment-card img {
+                width: 120px;
+                height: 65px;
+
+                max-width: 120px;
+                max-height: 65px;
+            }
+
+
+            /* Payment button */
+
+            .payment-btn {
+                width: 210px;
+                height: 55px;
+
+                font-size: 27px;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 650px) {
+
+            body {
+                overflow-y: auto;
+            }
+
+
+            /* Navbar */
+
+            .navbar {
+                height: auto;
+
+                min-height: 70px;
+
+                flex-wrap: wrap;
+
+                padding: 15px 20px;
+
+                gap: 12px;
+            }
+
+            .logo {
+                width: 100%;
+
+                font-size: 23px;
+            }
+
+            .nav-menu {
+                width: 100%;
+
+                justify-content: space-between;
+
+                gap: 10px;
+            }
+
+            .nav-menu a {
+                font-size: 9px;
+            }
+
+            .contact-btn {
+                padding: 8px 14px;
+
+                font-size: 9px !important;
+
+                margin-left: 0;
+            }
+
+
+            /* Main */
+
+            .main {
+                padding: 25px 15px;
+            }
+
+            .heading {
+                font-size: 20px;
+
+                line-height: 1.3;
+
+                margin-bottom: 18px;
+            }
+
+
+            /* Donation box */
+
+            .donation-box {
+                flex-direction: column;
+
+                padding: 30px 20px;
+
+                min-height: auto;
+
+                height: auto;
+            }
+
+
+            /* Form */
+
+            .form-section {
+                width: 100%;
+
+                padding: 0;
+            }
+
+            .form-row {
+                grid-template-columns: 95px 150px;
+
+                column-gap: 10px;
+
+                justify-content: center;
+
+                margin-bottom: 20px;
+            }
+
+            .form-row:last-child {
+                margin-bottom: 0;
+            }
+
+            .form-row label {
+                width: 95px;
+
+                font-size: 17px;
+            }
+
+            .form-row input {
+                width: 150px;
+
+                height: 29px;
+            }
+
+
+            /* Divider */
+
+            .divider {
+                width: 80%;
+
+                height: 1px;
+
+                margin: 25px auto;
+            }
+
+
+            /* Payment */
+
+            .payment-section {
+                width: 100%;
+
+                padding: 0;
+            }
+
+            .payment-methods {
+                width: 100%;
+
+                max-width: 265px;
+
+                grid-template-columns: 125px 125px;
+
+                column-gap: 15px;
+
+                row-gap: 18px;
+            }
+
+            .payment-card {
+                width: 125px;
+                height: 75px;
+
+                border-radius: 10px;
+            }
+
+            .payment-card img {
+                width: 105px;
+                height: 58px;
+
+                max-width: 105px;
+                max-height: 58px;
+            }
+
+
+            /* Card icon */
+
+            .card-container .card {
+                width: 52px;
+                height: 34px;
+            }
+
+
+            /* Payment button */
+
+            .payment-btn {
+                margin-top: 45px;
+
+                width: 175px;
+
+                height: 52px;
+
+                font-size: 24px;
+            }
+        }
+
+
+        /* =====================================================
+           SMALL HEIGHT DESKTOP SCREENS
+        ===================================================== */
+
+        @media (min-width: 651px) and (max-height: 700px) {
+
+            .navbar {
+                height: 65px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .main {
+                padding-top: 25px;
+
+                padding-bottom: 20px;
+            }
+
+            .heading {
+                font-size: 27px;
+
+                margin-bottom: 18px;
+            }
+
+            .donation-box {
+                min-height: 450px;
+
+                height: 450px;
+
+                padding-top: 25px;
+                padding-bottom: 25px;
+            }
+
+
+            /* Form */
+
+            .form-row {
+                grid-template-columns: 105px 183px;
+
+                column-gap: 15px;
+
+                margin-bottom: 19px;
+            }
+
+            .form-row label {
+                width: 105px;
+
+                font-size: 22px;
+            }
+
+            .form-row input {
+                width: 183px;
+
+                height: 27px;
+            }
+
+
+            /* Divider */
+
+            .divider {
+                height: 260px;
+            }
+
+
+            /* Payment cards */
+
+            .payment-methods {
+                grid-template-columns: 155px 155px;
+
+                column-gap: 25px;
+
+                row-gap: 18px;
+            }
+
+            .payment-card {
+                width: 155px;
+                height: 82px;
+            }
+
+            .payment-card img {
+                width: 125px;
+                height: 62px;
+            }
+
+
+            /* Button */
+
+            .payment-btn {
+                margin-top: 30px;
+
+                width: 207px;
+
+                height: 52px;
+
+                font-size: 27px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <header class="navbar">
+        <a href="../../../../Homepage/index.html" class="logo">CareDirect</a>
+        <nav class="nav-menu">
+            <a href="../../../../Homepage/index.html" class="nav-link">Home</a>
+            <a href="donation.html" class="nav-link">Donation</a>
+        </nav>
+        <div class="nav-actions">
+            <a href="../../../../Login-Registration/login.html" class="btn-login">Log In</a>
+            <a href="../../../../Login-Registration/Registration.html" class="btn-signup">Sign Up</a>
+        </div>
+    </header>
+
+
+    <!-- =====================================================
+         DECORATIVE STRIP
+    ===================================================== -->
+
+    <div class="decoration"></div>
+
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
+
+    <main class="main">
+
+        <h1 class="heading">
+            Your support through donations is our greatest strength.
+        </h1>
+
+
+        <!-- =================================================
+             DONATION BOX
+        ================================================= -->
+
+        <section class="donation-box">
+
+
+            <!-- =============================================
+                 LEFT FORM
+            ============================================== -->
+
+            <div class="form-section">
+
+
+                <!-- Name -->
+
+                <div class="form-row">
+
+                    <label for="name">
+                        Name:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                    >
+
+                </div>
+
+
+                <!-- Profession -->
+
+                <div class="form-row">
+
+                    <label for="profession">
+                        Profession:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="profession"
+                        name="profession"
+                    >
+
+                </div>
+
+
+                <!-- Phone -->
+
+                <div class="form-row">
+
+                    <label for="phone">
+                        Phone No:
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                    >
+
+                </div>
+
+
+                <!-- Address -->
+
+                <div class="form-row">
+
+                    <label for="address">
+                        Address:
+                    </label>
+
+                    <input
+                        type="text"
+                        id="address"
+                        name="address"
+                    >
+
+                </div>
+
+
+                <!-- Amount -->
+
+                <div class="form-row">
+
+                    <label for="amount">
+                        Amount:
+                    </label>
+
+                    <input
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        min="1"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- =============================================
+                 DIVIDER
+            ============================================== -->
+
+            <div class="divider"></div>
+
+
+            <!-- =============================================
+                 RIGHT PAYMENT SECTION
+            ============================================== -->
+
+            <div class="payment-section">
+
+
+                <!-- Payment Methods -->
+
+                <div class="payment-methods">
+
+
+                    <!-- bKash -->
+
+                    <div class="payment-card">
+
+                        <img
+                            src="Bkash-logo.png"
+                            alt="bKash"
+                        >
+
+                    </div>
+
+
+                    <!-- Rocket -->
+
+                    <div class="payment-card">
+
+                        <img
+                            src="dutch-bangla-rocket-logo-png_seeklogo-317692.png"
+                            alt="Rocket"
+                        >
+
+                    </div>
+
+
+                    <!-- Nagad -->
+
+                    <div class="payment-card">
+
+                        <img
+                            src="nagad-logo-png_seeklogo-411803.png"
+                            alt="Nagad"
+                        >
+
+                    </div>
+
+
+                    <!-- Card -->
+
+                    <div class="payment-card card-container">
+
+                        <div class="card"></div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     PAYMENT BUTTON
+                     
+                     Clicking this will open:
+                     after donation.html
+                ================================================= -->
+
+                <a
+                    href="after donation.html"
+                    class="payment-btn"
+                >
+                    PAYMENT
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+</body>
+
+</html>

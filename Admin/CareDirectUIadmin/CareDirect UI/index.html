@@ -1,0 +1,1276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CareDirect — Facility Management</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app" class="app">
+      <!-- ============ SIDEBAR ============ -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <img src="logo.png" alt="Facility Logo" class="logo-mark" />
+          <span class="logo-text">CareDirect</span>
+        </div>
+
+        <ul class="nav-list">
+          <li>
+            <a href="#" class="nav-link active" data-page="page-dashboard"
+              ><span class="nav-icon">▦</span>Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="page-activity"
+              ><span class="nav-icon">🔔</span>Activity Feed</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="page-residents"
+              ><span class="nav-icon">📋</span>Resident Records</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="page-staff"
+              ><span class="nav-icon">👥</span>Staff</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="page-rooms"
+              ><span class="nav-icon">🛏</span>Floor &amp; Room Management</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="page-emergency"
+              ><span class="nav-icon">⚠</span>Emergency</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="page-reports"
+              ><span class="nav-icon">📄</span>Reports &amp; Audit Trails</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="page-reviews"
+              ><span class="nav-icon">★</span>Reviews &amp; Feedback</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" data-page="page-donation"
+              ><span class="nav-icon">♥</span>Donation</a
+            >
+          </li>
+        </ul>
+
+        <div class="sidebar-footer">
+          <a href="../../../Login-Registration/login.html" class="footer-link logout-link"
+            ><span class="nav-icon">⏻</span>Logout</a
+          >
+        </div>
+      </nav>
+
+      <!-- ============ MAIN WRAPPER ============ -->
+      <div class="main-wrapper">
+        <!-- TOP BAR -->
+        <header class="topbar">
+          <div class="search-box">
+            <span class="search-icon">⌕</span>
+            <input
+              type="text"
+              placeholder="Search records, staff or feedback..."
+            />
+          </div>
+          <div class="topbar-right">
+            <button class="icon-btn" aria-label="Notifications">
+              🔔<span class="notif-dot"></span>
+            </button>
+            <div class="admin-profile">
+              <img src="avatar.png" alt="Admin Avatar" class="avatar" />
+              <div class="admin-text">
+                <div class="admin-name">Admin User</div>
+                <div class="admin-role">Facility Manager</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="main-content">
+          <!-- ============ 1. DASHBOARD ============ -->
+          <section id="page-dashboard" class="page active">
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-top">
+                  <span class="metric-icon teal-soft">👥</span>
+                  <span class="pill pill-green">+3 Today</span>
+                </div>
+                <div class="metric-label">Active Residents</div>
+                <div class="metric-value">142</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-top">
+                  <span class="metric-icon teal-soft">🩺</span>
+                  <span class="pill pill-gray">Full Staffing</span>
+                </div>
+                <div class="metric-label">Staff on Duty</div>
+                <div class="metric-value">28</div>
+              </div>
+              <div class="metric-card metric-alert">
+                <div class="metric-top">
+                  <span class="metric-icon red-soft">⚠</span>
+                  <span class="pill pill-red">Requires Action</span>
+                </div>
+                <div class="metric-label">Open Emergency Alerts</div>
+                <div class="metric-value danger">02</div>
+              </div>
+            </div>
+
+            <div class="dashboard-grid">
+              <div class="card feed-card">
+                <div class="card-header">
+                  <h3>📡 Real-time Alert Feed</h3>
+                  <a href="#" class="link-action">Clear All</a>
+                </div>
+
+                <div class="feed-item feed-critical">
+                  <div class="feed-avatar ring-red"></div>
+                  <div class="feed-body">
+                    <div class="feed-title-row">
+                      <span class="feed-title"
+                        >Emergency SOS: Resident Arthur Morgan</span
+                      >
+                      <span class="feed-time"
+                        ><span class="dot-red"></span>2m ago</span
+                      >
+                    </div>
+                    <p class="feed-sub">
+                      Room 302-B • Fall Detection Sensor Triggered
+                    </p>
+                    <div class="feed-actions">
+                      <button class="btn btn-danger btn-sm">
+                        Dispatch Medical
+                      </button>
+                      <button class="btn btn-ghost btn-sm">Check Video</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="feed-item">
+                  <div class="feed-avatar ring-teal"></div>
+                  <div class="feed-body">
+                    <div class="feed-title-row">
+                      <span class="feed-title"
+                        >Medication Missed: Resident Clara Barton</span
+                      >
+                      <span class="feed-time">14m ago</span>
+                    </div>
+                    <p class="feed-sub">
+                      Room 114-A • Blood Pressure Meds (10:00 AM)
+                    </p>
+                  </div>
+                </div>
+
+                <div class="feed-item">
+                  <div class="feed-avatar ring-gray">⇥</div>
+                  <div class="feed-body">
+                    <div class="feed-title-row">
+                      <span class="feed-title"
+                        >Unauthorized Exit: North Gate</span
+                      >
+                      <span class="feed-time">45m ago</span>
+                    </div>
+                    <p class="feed-sub">
+                      Staff ID #9284 • Door held open &gt; 30s
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dashboard-side">
+                <div class="card occupancy-card">
+                  <h3>Occupancy Ratio</h3>
+                  <div class="occupancy-ring">
+                    <div class="ring-value">94%</div>
+                    <div class="ring-label">OCCUPIED</div>
+                  </div>
+                  <div class="occupancy-row">
+                    <span class="dot-teal"></span>Occupied Rooms
+                    <strong>158</strong>
+                  </div>
+                  <div class="occupancy-row">
+                    <span class="dot-light"></span>Available <strong>12</strong>
+                  </div>
+                </div>
+
+                <div class="card management-card">
+                  <h3>Management</h3>
+                  <button class="btn btn-dark-outline full">
+                    + New Admission
+                  </button>
+                  <button class="btn btn-dark-outline full">
+                    🗓 Staff Roster
+                  </button>
+                  <button class="btn btn-light full">
+                    🧑 Resident Manager
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 2. ACTIVITY FEED / RESIDENT ACTIVITY LOG ============ -->
+          <section id="page-activity" class="page">
+            <div class="page-header">
+              <div>
+                <h1>Guardian Activity Feed</h1>
+                <p class="page-sub">
+                  Comprehensive daily log for Mrs. Eleanor Vance • Today, Oct 24
+                </p>
+              </div>
+              <div class="header-stats">
+                <div class="mini-stat">
+                  <span class="mini-label">HEART RATE</span
+                  ><span class="mini-value">♥ 72 BPM</span>
+                </div>
+                <div class="mini-stat">
+                  <span class="mini-label">MEDICATION</span
+                  ><span class="mini-value">✓ 100%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="activity-grid">
+              <div class="card routine-card">
+                <span class="metric-icon teal-soft">☀</span>
+                <h3>Morning Routine</h3>
+                <p class="muted-text">
+                  Mrs. Vance woke up at 7:15 AM feeling refreshed. Morning
+                  vitals are within normal range with stable blood pressure.
+                </p>
+                <div class="routine-status">
+                  <span>Status: Active</span>
+                  <span class="pill pill-green">STABLE</span>
+                </div>
+              </div>
+
+              <div class="card timeline-card">
+                <div class="card-header">
+                  <h3>Activity Log</h3>
+                  <div class="tab-group">
+                    <span class="tab active">All</span>
+                    <span class="tab">Medication</span>
+                    <span class="tab">Health</span>
+                  </div>
+                </div>
+
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-dot teal">💊</div>
+                    <div class="timeline-content">
+                      <div class="timeline-top">
+                        <strong>Morning Medication Administered</strong
+                        ><span>10:30 AM</span>
+                      </div>
+                      <p>
+                        Lisinopril (10mg) and Multivitamin taken with full glass
+                        of water. No adverse reaction noted.
+                      </p>
+                      <span class="pill pill-teal">LOGGED BY: NURSE JENNA</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot mint">👥</div>
+                    <div class="timeline-content">
+                      <div class="timeline-top">
+                        <strong>Garden Social Participation</strong
+                        ><span>11:45 AM</span>
+                      </div>
+                      <p>
+                        Attended the "Herb Garden Walk." Mrs. Vance was highly
+                        engaged, conversing with three other residents. Mood:
+                        Elevated.
+                      </p>
+                      <span class="pill pill-teal"
+                        >LOGGED BY: WELLNESS COACH</span
+                      >
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot red">🍽</div>
+                    <div class="timeline-content">
+                      <div class="timeline-top">
+                        <strong>Lunch Served</strong><span>01:15 PM</span>
+                      </div>
+                      <p>
+                        Roasted Salmon with steamed asparagus and quinoa.
+                        Consumed 85% of the meal. Hydration: 300ml water.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-dot gray">⇄</div>
+                    <div class="timeline-content">
+                      <div class="timeline-top">
+                        <strong>Afternoon Vitals Record</strong
+                        ><span>02:45 PM</span>
+                      </div>
+                      <div class="vitals-grid">
+                        <div class="vital-box">
+                          <span>BP</span><strong>122/78</strong>
+                        </div>
+                        <div class="vital-box">
+                          <span>SPO2</span><strong>98%</strong>
+                        </div>
+                        <div class="vital-box">
+                          <span>TEMP</span><strong>98.4°F</strong>
+                        </div>
+                        <div class="vital-box">
+                          <span>STEP</span><strong>1,842</strong>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-outline-dashed full">
+                  Load Older Activities
+                </button>
+              </div>
+            </div>
+
+            <div class="activity-grid-bottom">
+              <div class="card">
+                <div class="card-header">
+                  <h3>Heart Rate (24h)</h3>
+                  <span>📈</span>
+                </div>
+                <div class="bar-chart small">
+                  <div class="bar" style="height: 35%"></div>
+                  <div class="bar" style="height: 55%"></div>
+                  <div class="bar" style="height: 70%"></div>
+                  <div class="bar" style="height: 100%"></div>
+                  <div class="bar" style="height: 30%"></div>
+                  <div class="bar" style="height: 40%"></div>
+                </div>
+                <div class="bar-chart-labels">
+                  <span>6 AM</span><span>12 PM</span><span>6 PM</span
+                  ><span>12 AM</span>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">
+                  <h3>Activity Photos</h3>
+                  <a href="#" class="link-action">View Album</a>
+                </div>
+                <div class="photo-grid">
+                  <div class="photo-box large" data-img="photo1.png">
+                    photo1.png
+                  </div>
+                  <div class="photo-box" data-img="photo2.png">photo2.png</div>
+                  <div class="photo-box" data-img="photo3.png">photo3.png</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 3. RESIDENT RECORDS ============ -->
+          <section id="page-residents" class="page">
+            <div class="stat-strip">
+              <div class="stat-block">
+                <span class="stat-label">Total Residents</span
+                ><span class="stat-value">124</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-label">East Wing</span
+                ><span class="stat-value">48</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-label">West Wing</span
+                ><span class="stat-value">76</span>
+              </div>
+              <div class="stat-block">
+                <span class="stat-label">New This Month</span
+                ><span class="stat-value danger">12</span>
+              </div>
+              <button class="btn btn-dark">+ New Admission</button>
+            </div>
+
+            <div class="card filter-card">
+              <div class="filter-row">
+                <div class="filter-field grow">
+                  <label>Search Resident</label>
+                  <input type="text" placeholder="Name or Room Number..." />
+                </div>
+                <div class="filter-field">
+                  <label>Wing / Ward</label>
+                  <select>
+                    <option>All Wings</option>
+                  </select>
+                </div>
+                <div class="filter-field">
+                  <label>Dietary Type</label>
+                  <select>
+                    <option>All Diets</option>
+                  </select>
+                </div>
+                <a href="#" class="link-action clear-link">⟲ Clear</a>
+              </div>
+            </div>
+
+            <div class="card table-card">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Resident</th>
+                    <th>Wing / Room</th>
+                    <th>Dietary Status</th>
+                    <th>Care Level</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="cell-person">
+                      <span
+                        class="avatar-circle"
+                        data-img="resident1.png"
+                      ></span>
+                      <div>
+                        <strong>Eleanor Vance</strong><br /><span
+                          class="muted-text"
+                          >ID: #RES-0942</span
+                        >
+                      </div>
+                    </td>
+                    <td>East Wing, Room 402</td>
+                    <td>
+                      <span class="pill pill-teal-outline">LOW SODIUM</span>
+                    </td>
+                    <td><span class="dot-teal"></span>Intermediate</td>
+                    <td class="actions-cell">✎ ⋮</td>
+                  </tr>
+                  <tr>
+                    <td class="cell-person">
+                      <span
+                        class="avatar-circle"
+                        data-img="resident2.png"
+                      ></span>
+                      <div>
+                        <strong>Samuel Thompson</strong><br /><span
+                          class="muted-text"
+                          >ID: #RES-1128</span
+                        >
+                      </div>
+                    </td>
+                    <td>West Wing, Room 105</td>
+                    <td><span class="pill pill-red-outline">DIABETIC</span></td>
+                    <td><span class="dot-red"></span>High Support</td>
+                    <td class="actions-cell">✎ ⋮</td>
+                  </tr>
+                  <tr>
+                    <td class="cell-person">
+                      <span
+                        class="avatar-circle"
+                        data-img="resident3.png"
+                      ></span>
+                      <div>
+                        <strong>Martha Jenkins</strong><br /><span
+                          class="muted-text"
+                          >ID: #RES-0881</span
+                        >
+                      </div>
+                    </td>
+                    <td>East Wing, Room 312</td>
+                    <td>
+                      <span class="pill pill-gray-outline">STANDARD</span>
+                    </td>
+                    <td><span class="dot-mint"></span>Independent</td>
+                    <td class="actions-cell">✎ ⋮</td>
+                  </tr>
+                  <tr>
+                    <td class="cell-person">
+                      <span
+                        class="avatar-circle"
+                        data-img="resident4.png"
+                      ></span>
+                      <div>
+                        <strong>Albert Ross</strong><br /><span
+                          class="muted-text"
+                          >ID: #RES-1002</span
+                        >
+                      </div>
+                    </td>
+                    <td>Memory Care, Room 04</td>
+                    <td>
+                      <span class="pill pill-red-outline">SOFT FOODS</span>
+                    </td>
+                    <td><span class="dot-red"></span>High Support</td>
+                    <td class="actions-cell">✎ ⋮</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="table-footer">
+                <span class="muted-text">Showing 1 to 10 of 124 residents</span>
+                <div class="pagination">
+                  <button>‹</button><button class="active">1</button
+                  ><button>2</button><button>3</button><button>›</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 4. STAFF & OPERATIONS ============ -->
+          <section id="page-staff" class="page">
+            <div class="page-header">
+              <div>
+                <h1>Staff Management</h1>
+                <p class="page-sub">
+                  Manage your healthcare heroes and daily shifts.
+                </p>
+              </div>
+              <button class="btn btn-dark">+ Add New Staff</button>
+            </div>
+
+            <div class="metrics-grid four">
+              <div class="metric-card">
+                <div class="metric-label">Active Today</div>
+                <div class="metric-value">24 / 32</div>
+                <div class="progress-track">
+                  <div class="progress-fill" style="width: 75%"></div>
+                </div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Nursing Staff</div>
+                <div class="metric-value">12</div>
+                <span class="pill pill-green">Full Strength</span>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Admin Team</div>
+                <div class="metric-value">6</div>
+                <span class="muted-text">2 on remote shift</span>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Next Shift Rotation</div>
+                <div class="metric-value danger">14:00</div>
+                <span class="muted-text">45 minutes remaining</span>
+              </div>
+            </div>
+
+            <div class="dashboard-grid">
+              <div class="card">
+                <div class="card-header">
+                  <h3>Staff Roster</h3>
+                  <span class="pill pill-teal-solid">LIVE</span>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Name &amp; Role</th>
+                      <th>Shift Status</th>
+                      <th>Contact</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="cell-person">
+                        <span
+                          class="avatar-circle"
+                          data-img="staff1.png"
+                        ></span>
+                        <div>
+                          <strong>Sarah Johnson</strong><br /><span
+                            class="role-tag teal"
+                            >Registered Nurse</span
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        Morning Shift<br /><span class="muted-text"
+                          >06:00 - 14:00</span
+                        >
+                      </td>
+                      <td class="contact-icons">
+                        <span class="round-icon">📞</span
+                        ><span class="round-icon">💬</span>
+                      </td>
+                      <td>⋮</td>
+                    </tr>
+                    <tr>
+                      <td class="cell-person">
+                        <span
+                          class="avatar-circle"
+                          data-img="staff2.png"
+                        ></span>
+                        <div>
+                          <strong>Marcus Chen</strong><br /><span
+                            class="role-tag teal"
+                            >Facility Admin</span
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        Admin Day<br /><span class="muted-text"
+                          >09:00 - 17:00</span
+                        >
+                      </td>
+                      <td class="contact-icons">
+                        <span class="round-icon">📞</span
+                        ><span class="round-icon">💬</span>
+                      </td>
+                      <td>⋮</td>
+                    </tr>
+                    <tr>
+                      <td class="cell-person">
+                        <span
+                          class="avatar-circle"
+                          data-img="staff3.png"
+                        ></span>
+                        <div>
+                          <strong>Elena Rodriguez</strong><br /><span
+                            class="role-tag red"
+                            >Kitchen Lead</span
+                          >
+                        </div>
+                      </td>
+                      <td>
+                        Split Shift<br /><span class="muted-text"
+                          >07:00 - 11:00 / 16:00 - 20:00</span
+                        >
+                      </td>
+                      <td class="contact-icons">
+                        <span class="round-icon">📞</span
+                        ><span class="round-icon">💬</span>
+                      </td>
+                      <td>⋮</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <a href="#" class="link-action center-link"
+                  >View All 42 Staff Members</a
+                >
+              </div>
+
+              <div class="dashboard-side">
+                <div class="card">
+                  <h3>Shift Coverage</h3>
+                  <div class="coverage-row">
+                    <span>Clinical Staff</span><strong>92%</strong>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill" style="width: 92%"></div>
+                  </div>
+                  <div class="coverage-row">
+                    <span>Support Services</span><strong>78%</strong>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill" style="width: 78%"></div>
+                  </div>
+                  <div class="coverage-row">
+                    <span class="danger-text">Night Watch</span
+                    ><strong>60%</strong>
+                  </div>
+                  <div class="progress-track">
+                    <div class="progress-fill danger" style="width: 60%"></div>
+                  </div>
+                  <a href="#" class="link-action">Optimize Roster →</a>
+                </div>
+                <div class="card management-card">
+                  <h3>📅 Holiday Requests</h3>
+                  <p class="muted-text light">
+                    There are 3 pending time-off requests for the upcoming week
+                    that require approval.
+                  </p>
+                  <button class="btn btn-light full">Review Requests</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 5. FLOOR & ROOM MANAGEMENT ============ -->
+          <section id="page-rooms" class="page">
+            <div class="page-header">
+              <div>
+                <h1>Room &amp; Bed Management</h1>
+                <p class="page-sub">
+                  Manage unit availability and resident assignments across all
+                  wings.
+                </p>
+              </div>
+              <div class="view-toggle">
+                <button class="toggle-btn active">▦ Grid View</button>
+                <button class="toggle-btn">▤ Floor Plan</button>
+              </div>
+            </div>
+
+            <div class="metrics-grid four">
+              <div class="metric-card">
+                <div class="metric-label">Total Capacity</div>
+                <div class="metric-value">120 Beds</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Occupied</div>
+                <div class="metric-value">104 Beds</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Available</div>
+                <div class="metric-value">16 Units</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Maintenance</div>
+                <div class="metric-value danger">2 Units</div>
+              </div>
+            </div>
+
+            <div class="card filter-card">
+              <div class="filter-row">
+                <input
+                  type="text"
+                  class="grow"
+                  placeholder="⌕ Search resident or room number..."
+                />
+                <select>
+                  <option>All Wings</option>
+                </select>
+                <select>
+                  <option>Status: All</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="room-grid">
+              <div class="room-card">
+                <div class="room-top">
+                  <div>
+                    <span class="muted-text">Room 204</span>
+                    <h4>
+                      East Wing
+                      <span class="pill pill-green-soft">✓ Premium</span>
+                    </h4>
+                  </div>
+                  <span class="pill pill-teal-soft">Occupied</span>
+                </div>
+                <p class="resident-name">
+                  Arthur Jenkins<br /><span class="muted-text"
+                    >Admitted: Oct 12, 2023</span
+                  >
+                </p>
+                <div class="room-actions">
+                  <button class="btn btn-outline-teal grow">Details</button
+                  ><button class="btn btn-square">⋮</button>
+                </div>
+              </div>
+
+              <div class="room-card dashed">
+                <div class="room-top">
+                  <div>
+                    <span class="muted-text">Room 205</span>
+                    <h4>
+                      East Wing
+                      <span class="pill pill-green-soft">✓ Standard</span>
+                    </h4>
+                  </div>
+                  <span class="pill pill-teal-soft">Available</span>
+                </div>
+                <p class="empty-slot">No resident assigned</p>
+                <button class="btn btn-dark full">+ Assign Resident</button>
+              </div>
+
+              <div class="room-card">
+                <div class="room-top">
+                  <div>
+                    <span class="muted-text">Suite 112 (Shared)</span>
+                    <h4>
+                      West Wing
+                      <span class="pill pill-green-soft">✓ Basic</span>
+                    </h4>
+                  </div>
+                  <span class="pill pill-teal-soft">1/2 Beds</span>
+                </div>
+                <div class="bed-row">
+                  <strong>Martha Stewart</strong
+                  ><span class="muted-text">Bed A</span
+                  ><span class="check-mark">✓</span>
+                </div>
+                <div class="bed-row dashed-row">+ Bed B - Assign</div>
+                <button class="btn btn-outline-teal full">Manage Suite</button>
+              </div>
+
+              <div class="room-card maintenance">
+                <div class="room-top">
+                  <div>
+                    <span class="muted-text">Room 301</span>
+                    <h4>North Wing</h4>
+                  </div>
+                  <span class="pill pill-red-solid">Maintenance</span>
+                </div>
+                <p class="muted-text light-red">
+                  Deep Clean &amp; Painting<br /><span class="dark-text"
+                    >Expected Finish: Today, 5:00 PM</span
+                  >
+                </p>
+                <button class="btn btn-outline-red full">View Task</button>
+              </div>
+
+              <div class="room-card">
+                <div class="room-top">
+                  <div>
+                    <span class="muted-text">Room 206</span>
+                    <h4>East Wing</h4>
+                  </div>
+                  <span class="pill pill-teal-soft">Occupied</span>
+                </div>
+                <p class="resident-name">
+                  Robert Wilson<br /><span class="muted-text"
+                    >Admitted: Jan 05, 2024</span
+                  >
+                </p>
+                <div class="room-actions">
+                  <button class="btn btn-outline-teal grow">Details</button
+                  ><button class="btn btn-square">⋮</button>
+                </div>
+              </div>
+
+              <div class="room-card dashed">
+                <div class="room-top">
+                  <div>
+                    <span class="muted-text">Room 102</span>
+                    <h4>West Wing</h4>
+                  </div>
+                  <span class="pill pill-teal-soft">Available</span>
+                </div>
+                <p class="empty-slot">No resident assigned</p>
+                <button class="btn btn-dark full">Assign Resident</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 6. EMERGENCY ============ -->
+          <section id="page-emergency" class="page">
+            <div class="page-header">
+              <div>
+                <h1>Emergency SOS Center</h1>
+                <p class="page-sub">
+                  Monitor and respond to emergency incidents in real time.
+                </p>
+              </div>
+            </div>
+
+            <div class="metrics-grid four">
+              <div class="metric-card border-left-red">
+                <div class="metric-label">Active Emergencies</div>
+                <div class="metric-value danger">
+                  2 <span class="metric-tag">!</span>
+                </div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Resolved Today</div>
+                <div class="metric-value">
+                  15 <span class="metric-tag">✓</span>
+                </div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Avg Response Time</div>
+                <div class="metric-value">
+                  2m 34s <span class="metric-tag">⏱</span>
+                </div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Medical Team Avail.</div>
+                <div class="metric-value">
+                  8 <span class="metric-tag">🩹</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card table-card">
+              <div class="card-header">
+                <h3>Recent Emergency History</h3>
+                <a href="#" class="link-action">⟲ View Full Logs</a>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Resident</th>
+                    <th>Time</th>
+                    <th>Response Time</th>
+                    <th>Outcome</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Evelyn Reed</strong></td>
+                    <td>08:14 AM</td>
+                    <td>1m 12s</td>
+                    <td><span class="pill pill-green">Stabilized</span></td>
+                    <td><span class="dot-green"></span>Resolved</td>
+                    <td class="link-action">⌕ View</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Henry Walton</strong></td>
+                    <td>07:30 AM</td>
+                    <td>45s</td>
+                    <td>
+                      <span class="pill pill-green">Treatment Given</span>
+                    </td>
+                    <td><span class="dot-green"></span>Resolved</td>
+                    <td class="link-action">⌕ View</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Martha Stewart</strong></td>
+                    <td>06:45 AM</td>
+                    <td>3m 02s</td>
+                    <td><span class="pill pill-amber">Hospitalized</span></td>
+                    <td><span class="dot-green"></span>Resolved</td>
+                    <td class="link-action">⌕ View</td>
+                  </tr>
+                  <tr>
+                    <td><strong>James Wilson</strong></td>
+                    <td>04:12 AM</td>
+                    <td>2m 45s</td>
+                    <td>
+                      <span class="pill pill-green">Treatment Given</span>
+                    </td>
+                    <td><span class="dot-green"></span>Resolved</td>
+                    <td class="link-action">⌕ View</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- ============ 7. REPORTS & AUDIT TRAILS ============ -->
+          <section id="page-reports" class="page">
+            <div class="dashboard-grid">
+              <div class="card">
+                <div class="card-header">
+                  <h3>📈 Facility Health Trends</h3>
+                  <div class="header-controls">
+                    <span class="pill pill-teal-solid">LIVE</span>
+                    <select>
+                      <option>Last 7 Days</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="bar-chart">
+                  <div class="bar" style="height: 45%"></div>
+                  <div class="bar" style="height: 85%"></div>
+                  <div class="bar" style="height: 35%"></div>
+                  <div class="bar" style="height: 65%"></div>
+                  <div class="bar" style="height: 55%"></div>
+                  <div class="bar" style="height: 95%"></div>
+                </div>
+              </div>
+              <div class="card audit-card">
+                <div class="card-header">
+                  <h3>Audit Trail</h3>
+                  <span>▤</span>
+                </div>
+                <div class="audit-item teal">
+                  <span class="audit-tag"
+                    >MEDICATION CHANGE <em>10:42 AM</em></span
+                  >
+                  <strong>Dosage updated for Resident #402</strong>
+                  <span class="muted-text">Modified by: Nurse R. Miller</span>
+                </div>
+                <div class="audit-item teal">
+                  <span class="audit-tag">ACCESS LOG <em>09:15 AM</em></span>
+                  <strong>Secure Entry: South Wing Gate</strong>
+                  <span class="muted-text">User: Maintenance Team B</span>
+                </div>
+                <div class="audit-item red">
+                  <span class="audit-tag">ALERT TRIGGER <em>08:30 AM</em></span>
+                  <strong>Fall Detection triggered in RM 12</strong>
+                  <span class="muted-text">Status: Resolved in 45 seconds</span>
+                </div>
+                <div class="audit-item teal">
+                  <span class="audit-tag">CARE PLAN <em>07:12 AM</em></span>
+                  <strong>Dietary restriction added: Low Sodium</strong>
+                  <span class="muted-text">Modified by: Dr. Sarah Jenkins</span>
+                </div>
+                <a href="#" class="link-action">View Full History ›</a>
+              </div>
+            </div>
+
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <div class="metric-label">Avg. Response Time</div>
+                <div class="metric-value">1.4 min</div>
+                <span class="muted-text">↓ 12% from yesterday</span>
+              </div>
+              <div class="metric-card">
+                <div class="metric-label">Resolved Alerts</div>
+                <div class="metric-value">128 / 130</div>
+                <span class="pill pill-green">✓ 98.4% Efficiency</span>
+              </div>
+            </div>
+
+            <div class="metrics-grid">
+              <div class="metric-card">
+                <span class="metric-icon red-soft">⚠</span>
+                <div class="metric-label">Critical Alerts Today</div>
+                <div class="metric-value danger">03</div>
+                <span class="muted-text">Immediate action required</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-icon teal-soft">👥</span>
+                <div class="metric-label">Facility Occupancy</div>
+                <div class="metric-value">94%</div>
+                <span class="muted-text">182 / 194 Beds Active</span>
+              </div>
+              <div class="metric-card">
+                <span class="metric-icon teal-soft">✓</span>
+                <div class="metric-label">Care Compliance</div>
+                <div class="metric-value">99.2%</div>
+                <span class="muted-text">Regulatory requirements met</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- ============ 8. REVIEWS & FEEDBACK ============ -->
+          <section id="page-reviews" class="page">
+            <div class="page-header">
+              <div>
+                <h1>Reviews &amp; Feedback</h1>
+                <p class="page-sub">
+                  Monitor resident family feedback and service quality.
+                </p>
+              </div>
+            </div>
+
+            <div class="metrics-grid four">
+              <div class="metric-card">
+                <span class="metric-icon teal-soft">★</span>
+                <div class="metric-label">Overall Rating</div>
+                <div class="metric-value">4.8/5.0</div>
+              </div>
+              <div class="metric-card">
+                <span class="metric-icon lavender-soft">💬</span>
+                <div class="metric-label">Total Reviews</div>
+                <div class="metric-value">286</div>
+              </div>
+              <div class="metric-card">
+                <span class="metric-icon green-soft">🙂</span>
+                <div class="metric-label">Positive Feedback</div>
+                <div class="metric-value">94%</div>
+              </div>
+              <div class="metric-card border-left-red">
+                <span class="metric-icon red-soft">📋</span>
+                <div class="metric-label">Pending Responses</div>
+                <div class="metric-value danger">12</div>
+              </div>
+            </div>
+
+            <div class="card table-card">
+              <div class="card-header">
+                <h3>Detailed Reviews</h3>
+                <span class="muted-text">Showing 3 latest entries</span>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Resident &amp; Family</th>
+                    <th>Rating</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong>Arthur Morgan</strong><br /><span
+                        class="muted-text"
+                        >Family: Emily Morgan</span
+                      >
+                    </td>
+                    <td>
+                      <span class="stars">★★★★★</span><br /><span
+                        class="muted-text"
+                        >Today</span
+                      >
+                    </td>
+                    <td><span class="pill pill-lavender">Staff</span></td>
+                    <td>
+                      <span class="pill pill-red-soft">● Needs Reply</span>
+                    </td>
+                    <td class="link-action">View</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Clara Barton</strong><br /><span
+                        class="muted-text"
+                        >Family: John Barton</span
+                      >
+                    </td>
+                    <td>
+                      <span class="stars">★★★★☆</span><br /><span
+                        class="muted-text"
+                        >Yesterday</span
+                      >
+                    </td>
+                    <td><span class="pill pill-lavender">Meals</span></td>
+                    <td>
+                      <span class="pill pill-green-soft">✓ Responded</span>
+                    </td>
+                    <td class="link-action">View</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>David Lewis</strong><br /><span class="muted-text"
+                        >Family: Sarah Lewis</span
+                      >
+                    </td>
+                    <td>
+                      <span class="stars">★★★☆☆</span><br /><span
+                        class="muted-text"
+                        >2 Days Ago</span
+                      >
+                    </td>
+                    <td><span class="pill pill-lavender">Cleanliness</span></td>
+                    <td><span class="pill pill-amber">⏱ Pending</span></td>
+                    <td class="link-action">View</td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="#" class="link-action center-link"
+                >View All 286 Reviews</a
+              >
+            </div>
+          </section>
+
+          <!-- ============ 9. DONATION ============ -->
+          <section id="page-donation" class="page">
+            <div class="page-header">
+              <div>
+                <h1>Donation Management</h1>
+                <p class="page-sub">
+                  Track donations, sponsors and funding activities across all
+                  care programs.
+                </p>
+              </div>
+              <div class="header-controls">
+                <button class="btn btn-outline-teal">⭳ Export Report</button>
+                <button class="btn btn-dark">+ New Campaign</button>
+              </div>
+            </div>
+
+            <div class="metrics-grid four">
+              <div class="metric-card">
+                <div class="metric-top">
+                  <span class="metric-icon teal-soft">🏦</span
+                  ><span class="pill pill-green">+12.5%</span>
+                </div>
+                <div class="metric-label">Total Donations</div>
+                <div class="metric-value">$58,400</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-top">
+                  <span class="metric-icon teal-soft">📅</span
+                  ><span class="pill pill-green">+4.2%</span>
+                </div>
+                <div class="metric-label">This Month</div>
+                <div class="metric-value">$6,800</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-top">
+                  <span class="metric-icon peach-soft">🤝</span
+                  ><span class="pill pill-red">-2</span>
+                </div>
+                <div class="metric-label">Active Donors</div>
+                <div class="metric-value">183</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-top">
+                  <span class="metric-icon teal-soft">📣</span
+                  ><span class="pill pill-green">Active</span>
+                </div>
+                <div class="metric-label">Campaigns</div>
+                <div class="metric-value">12</div>
+              </div>
+            </div>
+
+            <div class="card table-card">
+              <div class="card-header">
+                <h3>Recent Donations</h3>
+                <a href="#" class="link-action">View All Transactions</a>
+              </div>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Donor</th>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Campaign</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="cell-person">
+                      <span class="avatar-circle initials teal">AR</span
+                      ><strong>Ahmed Rahman</strong>
+                    </td>
+                    <td>Bank Transfer</td>
+                    <td>$500</td>
+                    <td>Medical Support</td>
+                    <td>Today</td>
+                    <td><span class="pill pill-green">Completed</span></td>
+                    <td>⋮</td>
+                  </tr>
+                  <tr>
+                    <td class="cell-person">
+                      <span class="avatar-circle initials mint">SW</span
+                      ><strong>Sarah Wilson</strong>
+                    </td>
+                    <td>Card</td>
+                    <td>$1200</td>
+                    <td>Food Program</td>
+                    <td>Yesterday</td>
+                    <td><span class="pill pill-green">Completed</span></td>
+                    <td>⋮</td>
+                  </tr>
+                  <tr>
+                    <td class="cell-person">
+                      <span class="avatar-circle initials brown">HA</span
+                      ><strong>Hasan Ali</strong>
+                    </td>
+                    <td>Cash</td>
+                    <td>$200</td>
+                    <td>General Fund</td>
+                    <td>Pending</td>
+                    <td><span class="pill pill-lavender">Pending</span></td>
+                    <td>⋮</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      const navLinks = document.querySelectorAll(".nav-link");
+      const pages = document.querySelectorAll(".page");
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("data-page");
+
+          navLinks.forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+
+          pages.forEach((p) => p.classList.remove("active"));
+          document.getElementById(targetId).classList.add("active");
+
+          document.querySelector(".main-content").scrollTop = 0;
+        });
+      });
+    </script>
+  </body>
+</html>

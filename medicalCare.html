@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Medical Care</title>
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/medicalCare.css">
+        <link rel="stylesheet" href="css/modal.css">
+
+    </head>
+
+    <div class="modal-overlay" id="careModal" onclick="handleOverlayClick(event)">
+        <div class="modal">
+            <div class="modal-header">
+                <div>
+                    <h4>Add Care Item</h4>
+                    <p>Fill in the details for the new care entry</p>
+                </div>
+                <button class="close-btn" onclick="closeModal()">✕</button>
+            </div>
+
+            <div class="form-group">
+                <label for="careType">Care Type</label>
+                <select id="careType">
+                    <option value="" disabled selected>Select type</option>
+                    <option>💊 Medication</option>
+                    <option>🏃 Therapy</option>
+                    <option>🩺 Routine Check</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="careName">Name</label>
+                <input type="text" id="careName" placeholder="e.g. Metformin 500mg">
+            </div>
+
+            <div class="form-group">
+                <label for="purpose">Purpose</label>
+                <input type="text" id="purpose" placeholder="e.g. Diabetes Management">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="scheduleTime">Time</label>
+                    <input type="time" id="scheduleTime">
+                </div>
+                <div class="form-group">
+                    <label for="frequency">Frequency</label>
+                    <select id="frequency">
+                    <option value="" disabled selected>Select</option>
+                    <option>Daily</option>
+                    <option>Weekly</option>
+                    <option>Mon, Wed, Fri</option>
+                    <option>Tue, Fri</option>
+                    <option>As needed</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Notes (optional)</label>
+                <textarea id="notes" placeholder="Any additional instructions..."></textarea>
+            </div>
+
+            <div class="modal-footer">
+                <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+                <button class="save-btn">Save Item</button>
+            </div>
+        </div>
+    </div>
+    
+    <body>
+        <div id="sidebar"></div>
+        <main id="main-body">
+            <div id="container">
+                <div id="header">
+                    <h3>Medical Care</h3>
+                    <p>Review and Manage Medicine</p>
+                </div>
+
+                <div id="buttons">
+                    <div id="left-btns">
+                        <button class="btn1">All</button>
+                        <button class="btn2">Medication</button>
+                        <button class="btn3">Therapy</button>
+                        <button class="btn4">Routine Check</button>
+                    </div>
+
+                    <div id="right-btns">
+                        <button id="add-btn" onclick="openModal()">Add Care Item</button>
+                    </div>
+                </div>
+
+                <div id="cards">
+                    <div class="card1">
+                        <div class="left-msg">
+                            <div class="icon">💊</div>
+                            <div class="detail">
+                                <div class="med-name">Metforming 500mg</div>
+                                <div class="purpose">Diabetes Management</div>
+                            </div>
+                        </div>
+                        <div class="right-msg">
+                            <div class="time">9:00 am, 9:00 PM Daily</div>
+                        </div>
+                    </div>
+
+                    <div class="card2">
+                        <div class="left-msg">
+                            <div class="icon">🏃‍♀️‍➡️</div>
+                            <div class="detail">
+                                <div class="med-name">Physiotherapy Session</div>
+                                <div class="purpose">Mobility Support-45min</div>
+                            </div>
+                        </div>
+                        <div class="right-msg">
+                            <div class="time">Tue,Fri 4:00 PM</div>
+                        </div>
+                    </div>
+
+                    <div class="card3">
+                        <div class="left-msg">
+                            <div class="icon">🩺</div>
+                            <div class="detail">
+                                <div class="med-name">Blood Pressure Check</div>
+                                <div class="purpose">Routine Monitoring</div>
+                            </div>
+                        </div>
+                        <div class="right-msg">
+                            <div class="time">8:00 AM, Daily</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+        <script src="js/sidebar.js"></script>
+        <script src="js/modal.js"></script>
+    </body>
+</html>
