@@ -3,7 +3,6 @@ fetch("sidebar.html")
     .then(data => {
         document.getElementById("sidebar").innerHTML = data;
 
-        // Set active item based on current page
         const currentPage = window.location.pathname.split("/").pop();
         const links = document.querySelectorAll(".sidebar ul li a");
 
@@ -14,14 +13,18 @@ fetch("sidebar.html")
             }
         });
 
-        // Populate elder ID linked to this guardian
-        const elderId = localStorage.getItem("elderId") || "EL-2024-0817";
-        const elderIdEl = document.getElementById("elderIdValue");
-        if (elderIdEl) {
-            elderIdEl.textContent = elderId;
-        }
+        fetch("PHP/get_user_info.php")
+            .then(response => response.json())
+            .then(info => {
+                if (info.error) return;
 
-        // Emergency alert
+                const nameEl = document.getElementById("guardianName");
+                if (nameEl) nameEl.textContent = info.guardian_name;
+
+                const elderIdEl = document.getElementById("elderIdValue");
+                if (elderIdEl) elderIdEl.textContent = info.resident_id;
+            });
+
         const emergencyBtn = document.getElementById("emergencyBtn");
         if (emergencyBtn) {
             emergencyBtn.addEventListener("click", (e) => {

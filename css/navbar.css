@@ -109,7 +109,7 @@ body {
     list-style: none; 
 }
 
-.bottom-link li a {
+.bottom-link a {
     display: block;
     color: #00535B;
     text-decoration: none;
