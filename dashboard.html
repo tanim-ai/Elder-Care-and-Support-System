@@ -16,7 +16,7 @@
                 <div class="content-header">
                     <div>
                         <h1>Resident Overview</h1>
-                        <p>Last Updated: Today, 10:42PM</p>
+                        <p id="vitals-last-updated">--</p>
                     </div>
                     <div>
                         <a href="accommodation.html"><button class="btn-outline">Upgrade Accommodation</button></a>
@@ -29,12 +29,12 @@
                         <div class="cards-row">
                             <div class="card">
                                 <div class="card-header">
-                                    <span class="card-tag">Stable</span>
+                                    <span class="card-tag" id="bp-status">--</span>
                                 </div>
                                 <div class="card-body">
                                     <p class="card-label">Blood Pressure</p>
                                     <div class="card-value">
-                                        <span class="card-number">120/80</span>
+                                        <span class="card-number" id="bp-value">--</span>
                                         <span class="card-unit">mmHg</span>
                                     </div>
                                 </div>
@@ -42,12 +42,12 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <span class="card-tag">Normal</span>
+                                    <span class="card-tag" id="hr-status">--</span>
                                 </div>
                                 <div class="card-body">
                                     <p class="card-label">Heart Rate</p>
                                     <div class="card-value">
-                                        <span class="card-number">72</span>
+                                        <span class="card-number" id="hr-value">--</span>
                                         <span class="card-unit">per minute</span>
                                     </div>
                                 </div>
@@ -55,18 +55,18 @@
 
                             <div class="card">
                                 <div class="card-header">
-                                    <span class="card-tag">Normal</span>
+                                    <span class="card-tag" id="sugar-status">--</span>
                                 </div>
                                 <div class="card-body">
-                                    <p class="card-label">Diabetes</p>
+                                    <p class="card-label">Blood Sugar</p>
                                     <div class="card-value">
-                                        <span class="card-number">7</span>
+                                        <span class="card-number" id="sugar-value">--</span>
+                                         <span class="card-unit" id="sugar-unit"></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Daily Medication -->
                         <div class="daily-medication-card">
                             <div class="daily-medication-header">
                                 <span class="daily-medication-title">Daily Medication</span>
@@ -130,5 +130,6 @@
         </div>
 
         <script src="js/sidebar.js"></script>
+        <script src="js/vitals.js"></script>
     </body>
 </html>
