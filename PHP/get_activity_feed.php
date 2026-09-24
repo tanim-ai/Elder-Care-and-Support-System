@@ -27,10 +27,10 @@ if (!$row) {
 $resident_id = (int) $row['resident_id'];
 
 $stmt = mysqli_prepare($conn,
-    "SELECT title, description, activity_at
+    "SELECT title, description, taken_at
      FROM activity_logs
-     WHERE resident_id = ?
-     ORDER BY activity_at DESC
+     WHERE resident_id = ? AND status = 'completed'
+     ORDER BY taken_at DESC
      LIMIT 4");
 mysqli_stmt_bind_param($stmt, "i", $resident_id);
 mysqli_stmt_execute($stmt);
@@ -41,7 +41,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $activities[] = [
         "title"       => $row['title'],
         "description" => $row['description'],
-        "activity_at" => $row['activity_at']
+        "taken_at"    => $row['taken_at']
     ];
 }
 mysqli_stmt_close($stmt);
