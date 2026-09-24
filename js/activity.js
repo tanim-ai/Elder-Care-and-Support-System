@@ -36,7 +36,7 @@ async function loadActivityFeed() {
             const item = document.createElement('div');
             item.className = 'activity-item';
             item.innerHTML = `
-                <span class="activity-time">${formatActivityTime(act.activity_at)}</span>
+                <span class="activity-time">${formatActivityTime(act.taken_at)}</span>
                 <p class="activity-name">${act.title}</p>
                 <p class="activity-desc">${act.description ?? ''}</p>
             `;
