@@ -150,6 +150,16 @@ body {
     text-transform: uppercase;
 }
 
+.card-tag.status-yellow {
+    background-color: #fef9c3;
+    color: #854d0e;
+}
+
+.card-tag.status-red {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
 /* ── ACTIVITY FEED ── */
 .activity-feed-card {
     display: flex;
