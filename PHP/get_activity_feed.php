@@ -26,11 +26,27 @@ if (!$row) {
 
 $resident_id = (int) $row['resident_id'];
 
+function formatMedicationTitle($title) {
+    if (!preg_match('/item_name:\s*(.+?)\s*dosage:\s*(.+?)\s*purpose:/si', $title, $m)) {
+        return $title;
+    }
+    $name   = trim($m[1]);
+    $dosage = preg_replace('/(\d)\s*(mg|mcg|g|ml)\b/i', '$1 $2', trim($m[2]));
+
+    $status = 'due';
+    if (preg_match('/marked\s+(\w+)\s*$/i', $title, $s)) {
+        $word = strtolower($s[1]);
+        $status = ($word === 'completed' || $word === 'done' || $word === 'taken') ? 'done' : 'due';
+    }
+    return "$name $dosage marked $status";
+}
+
 $stmt = mysqli_prepare($conn,
-    "SELECT title, description, taken_at
+    "SELECT activity_type, TRIM(title) AS title, description, activity_at AS taken_at
      FROM activity_logs
-     WHERE resident_id = ? AND status = 'completed'
-     ORDER BY taken_at DESC
+     WHERE resident_id = ?
+       AND title NOT LIKE '%marked missed%'
+     ORDER BY activity_at DESC
      LIMIT 4");
 mysqli_stmt_bind_param($stmt, "i", $resident_id);
 mysqli_stmt_execute($stmt);
@@ -38,8 +54,14 @@ $result = mysqli_stmt_get_result($stmt);
 
 $activities = [];
 while ($row = mysqli_fetch_assoc($result)) {
+    $title = $row['title'];
+
+    if ($row['activity_type'] === 'medication') {
+        $title = formatMedicationTitle($title);
+    }
+
     $activities[] = [
-        "title"       => $row['title'],
+        "title"       => $title,
         "description" => $row['description'],
         "taken_at"    => $row['taken_at']
     ];

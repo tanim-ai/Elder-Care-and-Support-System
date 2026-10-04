@@ -107,9 +107,12 @@ body {
 
 #cards {
     display: grid;
+    grid-auto-rows: 120px;  
+    align-content: start;    
     gap:15px;
     margin:10px;
-    height:400px;
+    max-height:400px;
+    overflow-y: auto;       
 }
 
 .card1{

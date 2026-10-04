@@ -61,7 +61,7 @@ try {
     mysqli_stmt_close($stmt2);
     $guardian_id = mysqli_insert_id($conn);
 
-    $stmt3 = mysqli_prepare($conn, "SELECT resident_id FROM residents WHERE user_id = ?");
+    $stmt3 = mysqli_prepare($conn, "SELECT resident_id FROM residents WHERE resident_id = ?");
     mysqli_stmt_bind_param($stmt3, "i", $residentId);
     mysqli_stmt_execute($stmt3);
     $result = mysqli_stmt_get_result($stmt3);

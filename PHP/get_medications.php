@@ -27,36 +27,57 @@ if (!$row) {
 $resident_id = (int) $row['resident_id'];
 
 $stmt = mysqli_prepare($conn,
-    "SELECT ml.log_id, ci.item_name, ci.scheduled_time, ml.status, ml.taken_at
-     FROM medication_logs ml
-     JOIN care_items ci ON ci.care_item_id = ml.care_item_id
-     WHERE ml.resident_id = ? AND ml.scheduled_date = CURDATE()
-     ORDER BY ci.scheduled_time ASC");
+    "SELECT care_item_id, item_name, dosage,
+            scheduled_time, scheduled_time_2, scheduled_time_3
+     FROM care_items
+     WHERE resident_id = ? AND care_type = 'medication'
+     ORDER BY scheduled_time ASC, care_item_id ASC");
 mysqli_stmt_bind_param($stmt, "i", $resident_id);
 mysqli_stmt_execute($stmt);
-$result = mysqli_stmt_get_result($stmt);
+$items = mysqli_fetch_all(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
+mysqli_stmt_close($stmt);
+
+$stmt = mysqli_prepare($conn,
+    "SELECT care_item_id, scheduled_time, status, taken_at
+     FROM medication_logs
+     WHERE resident_id = ? AND scheduled_date = CURDATE()");
+mysqli_stmt_bind_param($stmt, "i", $resident_id);
+mysqli_stmt_execute($stmt);
+$logRows = mysqli_fetch_all(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
+mysqli_stmt_close($stmt);
+
+$logs = [];
+foreach ($logRows as $l) {
+    $logs[$l['care_item_id'] . '|' . $l['scheduled_time']] = $l;
+}
 
 $medications = [];
-$takenCount = 0;
-$totalCount = 0;
+$taken = 0;
 
-while ($med = mysqli_fetch_assoc($result)) {
-    $totalCount++;
-    if ($med['status'] === 'completed') {
-        $takenCount++;
+foreach ($items as $it) {
+    $times = array_values(array_filter([
+        $it['scheduled_time'], $it['scheduled_time_2'], $it['scheduled_time_3']
+    ]));
+    if (!$times) $times = [null]; 
+
+    $name = trim(trim($it['item_name']) . ' ' . trim($it['dosage']));
+
+    foreach ($times as $t) {
+        $log = $t ? ($logs[$it['care_item_id'] . '|' . $t] ?? null) : null;
+        $status = $log['status'] ?? 'pending';
+        if ($status === 'completed') $taken++;
+
+        $medications[] = [
+            "name"      => $name,
+            "scheduled" => $t ? substr($t, 0, 5) : null,
+            "status"    => $status,
+            "taken_at"  => $log['taken_at'] ?? null,
+        ];
     }
-    $medications[] = [
-        "name"      => $med['item_name'],
-        "status"    => $med['status'],
-        "scheduled" => $med['scheduled_time'],
-        "taken_at"  => $med['taken_at']
-    ];
 }
-mysqli_stmt_close($stmt);
 
 echo json_encode([
     "medications" => $medications,
-    "taken_count" => $takenCount,
-    "total_count" => $totalCount
+    "taken_count" => $taken,
+    "total_count" => count($medications),
 ]);
-?>

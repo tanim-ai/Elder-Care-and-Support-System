@@ -9,7 +9,7 @@ if (!$residentId || !ctype_digit($residentId)) {
     exit;
 }
 
-$stmt = mysqli_prepare($conn, "SELECT u.full_name FROM residents r JOIN users u ON r.user_id = u.user_id WHERE r.user_id = ?");
+$stmt = mysqli_prepare($conn, "SELECT u.full_name FROM residents r JOIN users u ON r.user_id = u.user_id WHERE r.resident_id = ?");
 mysqli_stmt_bind_param($stmt, "i", $residentId);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);

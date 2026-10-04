@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const roomLabel = data.room_number
-                ? `${data.service_name} Room - Room ${data.room_number}`
+                ? `${data.service_name} Room : ${data.room_number}`
                 : `${data.service_name} Room`;
 
             document.getElementById("room-label").textContent = roomLabel;
