@@ -15,60 +15,54 @@
                 <header class="page-header">
                     <div>
                         <h1>Payment History</h1>
-                        <p class="subtitle">Full record of past invoices and
-                            payments for Eleanor Thompson.</p>
+                        <p class="subtitle" id="subtitle">Full record of past invoices and payments.</p>
                     </div>
-                    <a href="billing.html" class="btn btn-secondary">← Back to
-                        Billing</a>
+                    <a href="billing.html" class="btn btn-secondary">← Back to Billing</a>
                 </header>
 
                 <section class="card history-card full-history">
-                    <ul class="history-list">
-                        <li>
-                            <span class="check">✔</span>
-                            <div class="history-details">
-                                <div class="history-month">July Invoice</div>
-                                <div class="history-date">Paid on July 28</div>
-                            </div>
-                            <div class="history-amount">$3,420.00</div>
-                        </li>
-                        <li>
-                            <span class="check">✔</span>
-                            <div class="history-details">
-                                <div class="history-month">June Invoice</div>
-                                <div class="history-date">Paid on June 29</div>
-                            </div>
-                            <div class="history-amount">$3,420.00</div>
-                        </li>
-                        <li>
-                            <span class="check">✔</span>
-                            <div class="history-details">
-                                <div class="history-month">May Invoice</div>
-                                <div class="history-date">Paid on May 27</div>
-                            </div>
-                            <div class="history-amount">$3,150.00</div>
-                        </li>
-                        <li>
-                            <span class="check">✔</span>
-                            <div class="history-details">
-                                <div class="history-month">April Invoice</div>
-                                <div class="history-date">Paid on April 27</div>
-                            </div>
-                            <div class="history-amount">$3,150.00</div>
-                        </li>
-                        <li>
-                            <span class="check">✔</span>
-                            <div class="history-details">
-                                <div class="history-month">March Invoice</div>
-                                <div class="history-date">Paid on March 28</div>
-                            </div>
-                            <div class="history-amount">$2,980.00</div>
-                        </li>
+                    <ul class="history-list" id="historyList">
+                        <li><div class="history-details"><div class="history-month">Loading…</div></div></li>
                     </ul>
                 </section>
 
             </main>
         </div>
+
+        <script src="js/sidebar.js"></script>
+        <script>
+            const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
+                ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+            const money = (v) => Number(v).toLocaleString("en-US", { style: "currency", currency: "USD" });
+            const msg = (t) => `<li><div class="history-details"><div class="history-month">${esc(t)}</div></div></li>`;
+
+            (async () => {
+                const list = document.getElementById("historyList");
+                try {
+                    const res = await fetch("PHP/get_billing.php?all=1", { credentials: "same-origin" });
+                    const data = await res.json();
+                    if (!data.success) { list.innerHTML = msg(data.message || "Could not load payment history."); return; }
+
+                    document.getElementById("subtitle").textContent =
+                        `Full record of past invoices and payments for ${data.resident.name}.`;
+
+                    list.innerHTML = data.history.length ? data.history.map((p) => {
+                        const month = new Date(p.billing_month + "T00:00:00")
+                            .toLocaleString("en-US", { month: "long", year: "numeric" });
+                        return `
+                        <li>
+                            <span class="check">✔</span>
+                            <div class="history-details">
+                                <div class="history-month">${esc(month)} Invoice</div>
+                                <div class="history-date">Paid on ${esc(p.paid_on)} · ${esc(p.method)}</div>
+                            </div>
+                            <div class="history-amount">${money(p.amount)}</div>
+                        </li>`;
+                    }).join("") : msg("No payments yet.");
+                } catch (e) {
+                    list.innerHTML = msg("Could not load payment history. Please check your connection.");
+                }
+            })();
+        </script>
     </body>
-    <script src="js/sidebar.js"></script>
 </html>

@@ -319,28 +319,42 @@ async function markMedication(careItemId, status, date) {
 }
 
 /* ============================================================
-   BILLING PAGE
+   BILLING PAGE  (uses the shared get_billing.php / pay_bill.php,
+   the same endpoints the guardian billing page uses)
    ============================================================ */
 let currentBillId = null;
 
+/* "2026-10-05" or "2026-10-05 17:58:52" -> local Date (also parses on Safari) */
+function parseDbDate(str) {
+  if (!str) return null;
+  return new Date(String(str).includes(" ") ? str.replace(" ", "T") : str + "T00:00:00");
+}
+
+function formatPaidOn(paidAt) {
+  const d = parseDbDate(paidAt);
+  return d ? "Paid " + d.toLocaleDateString() : "";
+}
+
 async function loadBilling() {
-  const data = await apiGet("get_resident_billing.php");
+  const data = await apiGet("get_billing.php", { all: 1 });
   if (!data.success) {
     console.error("Billing load failed:", data.error);
     return;
   }
 
-  const inv = data.current_invoice;
+  // get_billing.php returns the latest invoice even when it is already paid; only show unpaid ones as "due".
+  const inv = data.invoice && data.invoice.status !== "paid" ? data.invoice : null;
+  const payBtn = document.getElementById("payNowBtn");
+
   if (inv) {
     currentBillId = inv.bill_id;
     setText("invoiceStatus", inv.status === "overdue" ? "Overdue" : "Current Invoice");
-    setText("invoiceMonth", new Date(inv.billing_month).toLocaleString(undefined, { month: "long", year: "numeric" }) + " Care Plan");
+    setText("invoiceMonth", parseDbDate(inv.billing_month).toLocaleString(undefined, { month: "long", year: "numeric" }) + " Care Plan");
     setText("invoiceNote", "Due date: " + inv.due_date);
     setText("invoiceDueLabel", "Amount due " + inv.due_date);
-    setText("invoiceAmount", "$" + Number(inv.amount_due).toLocaleString());
-    setText("invoiceLineAmount", "$" + Number(inv.amount_due).toLocaleString());
-    const btn = document.getElementById("payNowBtn");
-    if (btn) { btn.disabled = false; btn.textContent = "Pay Now"; }
+    setText("invoiceAmount", "$" + Number(inv.balance).toLocaleString());
+    setText("invoiceLineAmount", "$" + Number(inv.balance).toLocaleString());
+    if (payBtn) { payBtn.disabled = false; payBtn.textContent = "Pay Now"; }
   } else {
     currentBillId = null;
     setText("invoiceStatus", "No Invoice Due");
@@ -348,35 +362,35 @@ async function loadBilling() {
     setText("invoiceNote", "No outstanding balance right now.");
     setText("invoiceAmount", "$0");
     setText("invoiceLineAmount", "$0");
-    const btn = document.getElementById("payNowBtn");
-    if (btn) { btn.disabled = true; btn.textContent = "Nothing Due"; }
+    if (payBtn) { payBtn.disabled = true; payBtn.textContent = "Nothing Due"; }
   }
+
+  const history = data.history || [];
 
   const historyList = document.getElementById("paymentHistoryList");
   if (historyList) {
-    historyList.innerHTML = data.payment_history.length ? data.payment_history.map(h => `
+    historyList.innerHTML = history.length ? history.slice(0, 3).map(h => `
       <div class="history-item">
         <div class="history-left"><div class="history-icon">✔</div>
-          <div><div class="month">${new Date(h.billing_month).toLocaleString(undefined, { month: "long" })}</div>
-          <div class="date">Paid ${h.paid_at ? new Date(h.paid_at).toLocaleDateString() : ""}</div></div></div>
-        <div class="amount">$${Number(h.amount_paid).toLocaleString()}</div>
+          <div><div class="month">${parseDbDate(h.billing_month).toLocaleString(undefined, { month: "long" })}</div>
+          <div class="date">${formatPaidOn(h.paid_at)}</div></div></div>
+        <div class="amount">$${Number(h.amount).toLocaleString()}</div>
       </div>
     `).join("") : `<div class="history-item"><div class="history-left"><div class="history-icon">—</div><div><div class="month">No payments yet</div></div></div></div>`;
   }
 
   // Full Billing History page
-  setText("fullHistorySubtitle", "Full record of past invoices and payments for " + (lastDashboardData?.resident?.full_name || "you") + ".");
+  setText("fullHistorySubtitle", "Full record of past invoices and payments for " + (lastDashboardData?.resident?.full_name || data.resident?.name || "you") + ".");
   const fullList = document.getElementById("fullHistoryList");
   if (fullList) {
-    const full = data.full_payment_history || [];
-    fullList.innerHTML = full.length ? full.map(h => `
+    fullList.innerHTML = history.length ? history.map(h => `
       <li>
         <span class="check">✔</span>
         <div class="history-details">
-          <div class="history-month">${new Date(h.billing_month).toLocaleString(undefined, { month: "long", year: "numeric" })} Invoice</div>
-          <div class="history-date">Paid ${h.paid_at ? new Date(h.paid_at).toLocaleDateString() : ""}</div>
+          <div class="history-month">${parseDbDate(h.billing_month).toLocaleString(undefined, { month: "long", year: "numeric" })} Invoice</div>
+          <div class="history-date">${formatPaidOn(h.paid_at)} · ${escapeHtml(h.method)}</div>
         </div>
-        <div class="history-amount">$${Number(h.amount_paid).toLocaleString()}</div>
+        <div class="history-amount">$${Number(h.amount).toLocaleString()}</div>
       </li>
     `).join("") : `<li><div class="history-details"><div class="history-month">No payment history yet</div></div></li>`;
   }
@@ -388,15 +402,22 @@ async function payInvoice(btn) {
     showToast("Nothing due right now");
     return;
   }
+  const selected = document.querySelector('#billing input[name="paymentMethod"]:checked');
+  if (!selected) {
+    showToast("Please select a payment method");
+    return;
+  }
+
   const original = btn.textContent;
   btn.disabled = true;
   btn.textContent = "Processing...";
 
-  const result = await apiPost("resident_pay_invoice.php", { bill_id: currentBillId });
+  const result = await apiPost("pay_bill.php", { bill_id: currentBillId, paymentMethod: selected.value });
   if (result.success) {
     btn.textContent = "✔ Payment Sent";
     showToast("Payment of $" + Number(result.amount_paid).toLocaleString() + " submitted");
-    loadBilling(); // refresh to show updated state
+    loadBilling();   // refresh invoice + history
+    loadDashboard(); // refresh recent activity
   } else {
     btn.textContent = original;
     btn.disabled = false;

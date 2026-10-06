@@ -6,6 +6,16 @@
         <title>Billing</title>
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/billing.css">
+        <style>
+            [hidden] { display: none !important; }
+            /* states added for live data (move into css/billing.css if you prefer) */
+            .badge-overdue { background: #fee2e2; color: #b91c1c; }
+            .badge-paid { background: #dcfce7; color: #15803d; }
+            .history-empty, .load-error { color: #6b7280; padding: 12px 0; }
+            .load-error { color: #b91c1c; }
+            .btn:disabled { opacity: .6; cursor: not-allowed; }
+            .history-method { font-size: .8em; color: #6b7280; }
+        </style>
     </head>
     <body>
         <div id="sidebar"></div>
@@ -14,55 +24,34 @@
                 <header class="page-header">
                     <div>
                         <h1>Billing</h1>
-                        <p class="subtitle">Review and manage premium care
-                            invoices for Eleanor Thompson.</p>
+                        <p class="subtitle" id="subtitle">Review and manage care invoices.</p>
                     </div>
-                    <button class="btn btn-donation" id="donationBtn">🏷
-                        Donation</button>
+                    <button class="btn btn-donation" id="donationBtn">🏷 Donation</button>
                 </header>
 
                 <div class="content-grid">
                     <section class="card invoice-card">
+                        <div id="invoiceError" class="load-error" hidden></div>
+
                         <div class="invoice-top">
-                            <span class="badge badge-due">Due in 5 days</span>
+                            <span class="badge badge-due" id="invoiceBadge">Loading…</span>
                             <div class="total-due">
-                                <div class="total-label">Total Amount Due</div>
-                                <div class="total-amount">$3,420.00</div>
+                                <div class="total-label" id="totalLabel">Total Amount Due</div>
+                                <div class="total-amount" id="totalAmount">—</div>
                             </div>
                         </div>
 
-                        <h2 class="invoice-id">Invoice #INV-2024-08</h2>
-                        <p class="billing-period">Billing Period: August 1 -
-                            August 31, 2024</p>
+                        <h2 class="invoice-id" id="invoiceId">Invoice</h2>
+                        <p class="billing-period" id="billingPeriod"></p>
 
-                        <ul class="line-items">
-                            <li>
-                                <span class="item-icon">🏠</span>
-                                <span class="item-label">Premium Suite
-                                    Accommodation</span>
-                                <span class="item-price">$2,200.00</span>
-                            </li>
-                            <li>
-                                <span class="item-icon">➕</span>
-                                <span class="item-label">Skilled Nursing Care
-                                    (Level 3)</span>
-                                <span class="item-price">$950.00</span>
-                            </li>
-                            <li>
-                                <span class="item-icon">🍴</span>
-                                <span class="item-label">Personalized Meal Plan
-                                    &amp; Nutrition</span>
-                                <span class="item-price">$270.00</span>
-                            </li>
-                        </ul>
+                        <ul class="line-items" id="lineItems"></ul>
 
-                        <div class="payment-method-section">
+                        <div class="payment-method-section" id="paymentSection">
                             <h3 class="payment-method-title">Payment Method</h3>
                             <div class="payment-method-list">
 
                                 <label class="payment-method-item">
-                                    <input type="radio" name="paymentMethod"
-                                        value="bkash">
+                                    <input type="radio" name="paymentMethod" value="bkash">
                                     <span class="pm-icon">📱</span>
                                     <span class="pm-info">
                                         <span class="pm-name">bKash</span>
@@ -71,8 +60,7 @@
                                 </label>
 
                                 <label class="payment-method-item">
-                                    <input type="radio" name="paymentMethod"
-                                        value="nagad">
+                                    <input type="radio" name="paymentMethod" value="nagad">
                                     <span class="pm-icon">📱</span>
                                     <span class="pm-info">
                                         <span class="pm-name">Nagad</span>
@@ -81,8 +69,7 @@
                                 </label>
 
                                 <label class="payment-method-item">
-                                    <input type="radio" name="paymentMethod"
-                                        value="visa" checked>
+                                    <input type="radio" name="paymentMethod" value="visa" checked>
                                     <span class="pm-icon">💳</span>
                                     <span class="pm-info">
                                         <span class="pm-name">Visa</span>
@@ -91,101 +78,52 @@
                                 </label>
 
                                 <label class="payment-method-item">
-                                    <input type="radio" name="paymentMethod"
-                                        value="mastercard">
+                                    <input type="radio" name="paymentMethod" value="mastercard">
                                     <span class="pm-icon">💳</span>
                                     <span class="pm-info">
                                         <span class="pm-name">Mastercard</span>
                                         <span class="pm-sub">Debit or Credit Card</span>
+                                    </span>
                                 </label>
 
                                 <label class="payment-method-item">
-                                    <input type="radio" name="paymentMethod"
-                                        value="bank">
+                                    <input type="radio" name="paymentMethod" value="bank">
                                     <span class="pm-icon">🏦</span>
                                     <span class="pm-info">
-                                        <span class="pm-name">Bank Transfer
-                                            (ACH)</span>
-                                        <span class="pm-sub">Checking
-                                            ****1123</span>
+                                        <span class="pm-name">Bank Transfer</span>
+                                        <span class="pm-sub">Direct bank payment</span>
                                     </span>
                                 </label>
                             </div>
                         </div>
 
                         <div class="invoice-actions">
-                            <button class="btn btn-primary" id="payNowBtn">Pay Now</button>
+                            <button class="btn btn-primary" id="payNowBtn" disabled>Pay Now</button>
                         </div>
                     </section>
 
                     <section class="card history-card">
                         <h2>Payment History</h2>
-
-                        <ul class="history-list">
-                            <li>
-                                <span class="check">✔</span>
-                                <div class="history-details">
-                                    <div class="history-month">July
-                                        Invoice</div>
-                                    <div class="history-date">Paid on July
-                                        28</div>
-                                </div>
-                                <div class="history-amount">$3,420.00</div>
-                            </li>
-                            <li>
-                                <span class="check">✔</span>
-                                <div class="history-details">
-                                    <div class="history-month">June
-                                        Invoice</div>
-                                    <div class="history-date">Paid on June
-                                        29</div>
-                                </div>
-                                <div class="history-amount">$3,420.00</div>
-                            </li>
-                            <li>
-                                <span class="check">✔</span>
-                                <div class="history-details">
-                                    <div class="history-month">May Invoice</div>
-                                    <div class="history-date">Paid on May
-                                        27</div>
-                                </div>
-                                <div class="history-amount">$3,150.00</div>
-                            </li>
+                        <ul class="history-list" id="historyList">
+                            <li class="history-empty">Loading…</li>
                         </ul>
-
-                        <a href="history.html" class="view-all">View Full
-                            History →</a>
+                        <a href="history.html" class="view-all">View Full History →</a>
                     </section>
                 </div>
             </main>
         </div>
 
         <div class="modal-overlay" id="donationOverlay">
-            <div class="modal" role="dialog" aria-modal="true"
-                aria-labelledby="donationTitle">
+            <div class="modal" role="dialog" aria-modal="true" aria-labelledby="donationTitle">
                 <div class="modal-header">
                     <h2 id="donationTitle">Make a Donation</h2>
-                    <button class="modal-close" id="donationClose"
-                        aria-label="Close">&times;</button>
+                    <button class="modal-close" id="donationClose" aria-label="Close">&times;</button>
                 </div>
 
                 <form class="modal-form" id="donationForm">
                     <label class="field">
-                        <span>Donor Name</span>
-                        <input type="text" name="name" placeholder="Full name"
-                            required>
-                    </label>
-
-                    <label class="field">
-                        <span>Email</span>
-                        <input type="email" name="email"
-                            placeholder="you@example.com" required>
-                    </label>
-
-                    <label class="field">
                         <span>Amount</span>
-                        <input type="number" name="amount" placeholder="$ 0.00"
-                            min="1" step="0.01" required>
+                        <input type="number" name="amount" placeholder="$ 0.00" min="1" step="0.01" required>
                     </label>
 
                     <label class="field">
@@ -193,7 +131,6 @@
                         <select name="paymentMethod" required>
                             <option value disabled selected>Select a payment
                                 method</option>
-
                             <option value="bkash">bKash</option>
                             <option value="nagad">Nagad</option>
                             <option value="visa">Visa</option>
@@ -210,15 +147,14 @@
                     </label>
 
                     <div class="modal-actions">
-                        <button type="button" class="btn btn-secondary"
-                            id="donationCancel">Cancel</button>
-                        <button type="submit"
-                            class="btn btn-primary">Donate</button>
+                        <button type="button" class="btn btn-secondary" id="donationCancel">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Donate</button>
                     </div>
                 </form>
             </div>
         </div>
+
+        <script src="js/sidebar.js"></script>
+        <script src="js/billing.js"></script>
     </body>
-    <script src="js/sidebar.js"></script>
-    <script src="js/billing.js"></script>
 </html>

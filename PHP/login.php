@@ -30,19 +30,42 @@ try{
     $user = mysqli_fetch_assoc($result);
     mysqli_stmt_close($stmt);
 
-    if(!$user || !password_verify($password,$user['password_hash'])){
-        fail("Invalid email or password.");
+    if($user && password_verify($password,$user['password_hash'])){
+        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['role']    = $user['role'];
+
+        if ($user['role'] === 'guardian') {
+            header("Location:../dashboard.html");
+        } else {
+            header("Location:../Resident/caredirect-portal/index.html");
+        }
+        exit;
+    }
+    $staffRoles = [
+        'kitchen_staff' => ['staff_id', 'kitchen', 'staff_id',
+            '../Kitchen/Kitchen%20Dashboard/Kitchen%20Dashboard/index.php'],
+        'admins'        => ['admin_id', 'admin', 'admin_id',
+            '../Admin/CareDirectUIadmin/CareDirect%20UI/index.html'],
+    ];
+
+    foreach($staffRoles as $table => [$idCol, $roleName, $sessionKey, $dashboard]){
+        $stmt = mysqli_prepare($conn,"SELECT $idCol AS id, password_hash FROM $table WHERE email = ? AND is_active = 1");
+        mysqli_stmt_bind_param($stmt,"s",$email);
+        mysqli_stmt_execute($stmt);
+        $row = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+        mysqli_stmt_close($stmt);
+
+        if($row && password_verify($password,$row['password_hash'])){
+            session_regenerate_id(true);
+            $_SESSION = [];
+            $_SESSION[$sessionKey] = (int)$row['id'];
+            $_SESSION['role']      = $roleName;
+            header("Location:$dashboard");
+            exit;
+        }
     }
 
-    $_SESSION['user_id'] = $user['user_id'];
-    $_SESSION['role']    = $user['role'];
-
-    if ($user['role'] === 'guardian') {
-        header("Location:../dashboard.html");
-    } else {
-        header("Location:../Resident/caredirect-portal/index.html");
-    }
-    exit;
+    fail("Invalid email or password.");
 
 
 }

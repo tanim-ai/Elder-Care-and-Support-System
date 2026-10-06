@@ -1,0 +1,4 @@
+# Block opening index.html directly - the dashboard must be opened via index.php
+<Files "index.html">
+    Require all denied
+</Files>
