@@ -44,6 +44,8 @@ function db(): mysqli
         fail('Server error. Please try again later.', 500);
     }
     $conn->set_charset('utf8mb4');
+    require_once __DIR__ . '/portal_schema.php';
+    ensure_portal_schema($conn);
     return $conn;
 }
 

@@ -27,9 +27,17 @@ fetch("sidebar.html")
 
         const emergencyBtn = document.getElementById("emergencyBtn");
         if (emergencyBtn) {
-            emergencyBtn.addEventListener("click", (e) => {
+            emergencyBtn.addEventListener("click", async (e) => {
                 e.preventDefault();
-                alert("🚨 Emergency alert sent! Staff have been notified and are on their way.");
+                if (emergencyBtn.dataset.sending) return;
+                emergencyBtn.dataset.sending = "1";
+                try {
+                    const response = await fetch("PHP/emergency.php", { method: "POST", credentials: "same-origin" });
+                    const result = await response.json();
+                    alert(result.message || result.error || "Unable to record SOS. Contact staff directly.");
+                } catch {
+                    alert("Unable to record SOS. Contact staff directly.");
+                } finally { delete emergencyBtn.dataset.sending; }
             });
         }
     });

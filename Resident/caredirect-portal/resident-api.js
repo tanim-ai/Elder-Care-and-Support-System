@@ -11,20 +11,24 @@ const API_BASE = "../../PHP/"; // relative to Resident/caredirect-portal/index.h
 async function apiGet(endpoint, params = {}) {
   const url = new URL(API_BASE + endpoint, window.location.href);
   Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
-  const res = await fetch(url, { credentials: "same-origin" });
-  return res.json();
+  try {
+    const res = await fetch(url, { credentials: "same-origin" });
+    return await res.json();
+  } catch { return { success: false, error: "Unable to reach the server. Please try again." }; }
 }
 
 /* Helper: POST form data to an endpoint, sending the session cookie */
 async function apiPost(endpoint, data = {}) {
   const body = new URLSearchParams(data);
+  try {
   const res = await fetch(API_BASE + endpoint, {
     method: "POST",
     credentials: "same-origin",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body
   });
-  return res.json();
+  return await res.json();
+  } catch { return { success: false, error: "Unable to reach the server. Please try again." }; }
 }
 
 /* ============================================================
@@ -338,7 +342,11 @@ function formatPaidOn(paidAt) {
 async function loadBilling() {
   const data = await apiGet("get_billing.php", { all: 1 });
   if (!data.success) {
-    console.error("Billing load failed:", data.error);
+    currentBillId = null;
+    setText("invoiceStatus", "Billing unavailable");
+    setText("invoiceNote", data.error || data.message);
+    const button = document.getElementById("payNowBtn");
+    if (button) button.disabled = true;
     return;
   }
 
@@ -639,7 +647,7 @@ async function openHealthReport() {
 async function openEmergency() {
   const result = await apiPost("resident_emergency.php");
   if (result.success) {
-    alert("🚨 Emergency alert sent! Staff have been notified and are on their way.");
+    alert(result.message);
   } else {
     alert("Could not send emergency alert: " + (result.error || "unknown error"));
   }
@@ -668,6 +676,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadSchedule();
   loadMedications();
   loadBilling();
+  loadPremiumUpgrade();
   loadMealPlan();
 
   // Log donations as activity (in addition to script.js's existing toast/modal UI)
@@ -685,3 +694,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+// Premium is a staff-approved request; it never silently changes room or charges.
+async function loadPremiumUpgrade() {
+  const button = document.getElementById("premiumUpgradeBtn");
+  const plan = await apiGet("get_accommodation.php");
+  const request = await apiGet("request_upgrade.php");
+  button.disabled = !plan.success || !request.success || plan.service_code === "premium" || request.pending;
+  button.textContent = !plan.success || !request.success ? "Upgrade unavailable" :
+    plan.service_code === "premium" ? "Premium plan active" : request.pending ? "Upgrade awaiting staff approval" : "Request Premium upgrade";
+}
+async function requestPremiumUpgrade(button) {
+  if (button.disabled || !confirm("Request Premium care? Staff approval and room assignment are required.")) return;
+  button.disabled = true;
+  const result = await apiPost("request_upgrade.php");
+  showToast(result.success ? "Premium upgrade requested. Awaiting staff approval." : result.error || result.message);
+  await loadPremiumUpgrade();
+}

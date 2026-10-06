@@ -62,8 +62,8 @@ try {
     $rid       = (int)$bill['resident_id'];
 
     $stmt = $db->prepare(
-        "INSERT INTO payments (bill_id, resident_id, paid_by_user_id, paid_by_role, amount, payment_method, reference_number)
-         VALUES (?, ?, ?, ?, ?, ?, ?)"
+        "INSERT INTO payments (bill_id, resident_id, paid_by_user_id, paid_by_role, amount, payment_method, reference_number, status)
+         VALUES (?, ?, ?, ?, ?, ?, ?, 'Completed')"
     );
     $role = $user['role'];
     $stmt->bind_param('iiissss', $billId, $rid, $uid, $role, $amountStr, $methodLabel, $reference);
