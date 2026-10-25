@@ -58,6 +58,48 @@ app.post('/register', async (req, res) => {
   }
 });
 
+app.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Please enter your email and password' });
+    }
+
+    const [rows] = await db.query(
+      'SELECT id, full_name, email, role, password_hash, status FROM users WHERE email = ?',
+      [email]
+    );
+
+    const user = rows[0];
+    if (!user) {
+      return res.status(401).json({ error: 'Incorrect email or password' });
+    }
+
+    const passwordMatches = await bcrypt.compare(password, user.password_hash);
+    if (!passwordMatches) {
+      return res.status(401).json({ error: 'Incorrect email or password' });
+    }
+
+    if (user.status !== 'active') {
+      return res.status(403).json({ error: 'This account is inactive' });
+    }
+
+    res.json({
+      message: 'Login successful',
+      user: {
+        id: user.id,
+        full_name: user.full_name,
+        email: user.email,
+        role: user.role
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong, please try again' });
+  }
+});
+
 app.listen(3000, () => {
   console.log('Server running at http://localhost:3000');
 });
