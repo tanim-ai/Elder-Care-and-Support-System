@@ -120,6 +120,16 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.get("/guardians", async(req,res) => {
+  const[rows] = await db.query("SELECT * FROM guardians");
+  res.json(rows);
+});
+
+app.get("/users", async(req,res)=>{
+  const [rows] = await db.query("SELECT id, full_name, email, role FROM users where role='guardian'");
+  res.json(rows);
+});
+
 app.listen(3000, () => {
   console.log("Server running at http://localhost:3000");
 });
