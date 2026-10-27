@@ -70,8 +70,30 @@ A simple diary of what I did, what I learned, and what's next.
 
 ---
 
-## Template for new entries
+## 2026-10-27
+**DONE:**
+- Finished GET /accommodation/:residentId (service_name, service_code, room_number, since)
+- Installed cors and added app.use(cors())
+- Changed fetch in js/accommodation.js to http://localhost:3000/accommodation/1
+- Page now shows the room and date from the database
 
+**Learned:**
+- res.json only has the columns my SELECT returned
+- service_code is built from data.name.toLowerCase()
+- DATE_FORMAT(ra.start_date,'%Y-%m-%d') AS start_date gives a plain date, no timezone shift
+- A SQL string needs different outer quotes ("...") than the inner ones ('%Y-%m-%d')
+- cors() is called directly, not cors.json()
+- fetch must call the running server (port 3000), not a file like js/server.js
+
+**Problems / questions:**
+- Resident id 1 is hard-coded in the fetch link
+- request_upgrade.php still gives an error (old PHP)
+
+**Next:**
+- Use the login JWT so the server knows who is asking
+- Rebuild the upgrade request in Node
+
+## Template for new entries
 ### YYYY-MM-DD
 **Done:**
 **Learned:**
