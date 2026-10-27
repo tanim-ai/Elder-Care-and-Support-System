@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("PHP/get_accommodation.php")
+    fetch("http://localhost:3000/accommodation/1")
         .then((res) => res.json())
         .then((data) => {
             if (!data.success) {
