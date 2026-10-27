@@ -1,9 +1,11 @@
 const express = require("express");
 const mysql = require("mysql2/promise");
 const bcrypt = require("bcrypt");
+const cors = require("cors");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
@@ -128,6 +130,31 @@ app.get("/guardians", async(req,res) => {
 app.get("/users", async(req,res)=>{
   const [rows] = await db.query("SELECT id, full_name, email, role FROM users where role='guardian'");
   res.json(rows);
+});
+
+app.get('/accommodation/:residentId', async (req, res) => {
+  const [rows] = await db.query(
+    "SELECT sc.name, r.room_number, DATE_FORMAT(ra.start_date,'%Y-%m-%d') AS start_date FROM residents res JOIN service_categories sc ON sc.id = res.current_plan_id JOIN room_assignments ra ON ra.resident_id = res.id JOIN rooms r ON r.id = ra.room_id WHERE res.id = ?",
+    [req.params.residentId]
+  );
+
+  const data = rows[0];
+
+  if(!data){
+    res.status(404).json({
+      success: false,
+      error: "Accommodation data not found!"
+    });
+  }
+  else{
+    res.json({
+      success: true,
+      service_name: data.name,
+      service_code: data.name.toLowerCase(),
+      room_number: data.room_number,
+      since: data.start_date
+    });
+  }
 });
 
 app.listen(3000, () => {
