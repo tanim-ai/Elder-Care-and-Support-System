@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var roleRedirects = {
     guardian: '../dashboard.html',
-    resident: '../Resident/caredirect-portal',
+    resident: '../Resident/caredirect-portal/index.html',
     staff: '../Kitchen/Kitchen Dashboard/Kitchen Dashboard/index.html',
     admin: '../Admin/CareDirectUIadmin/CareDirect UI/index.html'
   };
@@ -41,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log('Login successful:', data);
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
+      const redirectUrl = roleRedirects[data.user.role];
+      window.location.href = redirectUrl;
     }
     else
     {

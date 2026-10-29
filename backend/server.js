@@ -73,7 +73,7 @@ app.post("/register", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
 
     if (!email || !password) {
       return res
@@ -94,6 +94,9 @@ app.post("/login", async (req, res) => {
     const passwordMatches = await bcrypt.compare(password, user.password_hash);
     if (!passwordMatches) {
       return res.status(401).json({ error: "Incorrect email or password" });
+    }
+    if (user.role !== role) {
+      return res.status(403).json({ error: "You are not authorized for this role" });
     }
 
     if (user.status !== "active") {
@@ -133,6 +136,14 @@ app.get("/users", async(req,res)=>{
 });
 
 app.get('/accommodation/:residentId', async (req, res) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  return res.status(401).json({ 
+    success: false,
+    error: "Unauthorized" });
+}
+  const token = authHeader.split(" ")[1];
+  console.log(token);
   const [rows] = await db.query(
     "SELECT sc.name, r.room_number, DATE_FORMAT(ra.start_date,'%Y-%m-%d') AS start_date FROM residents res JOIN service_categories sc ON sc.id = res.current_plan_id JOIN room_assignments ra ON ra.resident_id = res.id JOIN rooms r ON r.id = ra.room_id WHERE res.id = ?",
     [req.params.residentId]
